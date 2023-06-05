@@ -21,5 +21,6 @@ Route::get('/starter', function() {
 Auth::routes(['verify' => false, 'reset' => false]);
 
 Route::middleware('auth')->group(function() {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/mata_kuliah', 'MataKuliahController@index') -> name(mataKuliahList);
 });
