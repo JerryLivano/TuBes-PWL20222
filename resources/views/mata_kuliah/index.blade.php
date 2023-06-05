@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Starter</h1>
+                <h1 class="m-0 text-dark">Mata Kuliah</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Starter</li>
+                    <li class="breadcrumb-item active">Mata Kuliah</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header text-right">
-                <a href="#" class="btn btn-primary" role="button">Open Genre Form</a>
+                <a href="#" class="btn btn-primary" role="button">Input Mata Kuliah</a>
 
             </div>
             <div class="card-body p-0">

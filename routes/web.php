@@ -33,6 +33,8 @@ Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswaLi
 Route::get('/programstudi',[ProgramStudiController::class,'index'])->name('programStudiList');
 Route::get('/programstudi/edit/{programStudi}',[ProgramStudiController::class,'edit'])->name('EditProgramStudiList');
 Route::post('/programstudi/edit/{programStudi}',[ProgramStudiController::class,'update'])->name('UpdateProgramStudiList');
+Route::get('/programstudi/create', [ProgramStudiController::class, 'create'])->name('createProgramStudi');
+Route::post('/programstudi/create', [ProgramStudiController::class, 'store'])->name('storeProgramStudi');
 Route::get('/mahasiswaprogramstudi',[MahasiswaMemilikiMatkulController::class,'index'])->name('mahasiswaProgramStudiList');
 Route::get('/mata_kuliah', [MataKuliahController::class,'index']) -> name('mataKuliahList');
 

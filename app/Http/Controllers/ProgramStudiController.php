@@ -27,7 +27,7 @@ class ProgramStudiController extends Controller
      */
     public function create()
     {
-        //
+        return view('programstudi/create');
     }
 
     /**
@@ -38,7 +38,13 @@ class ProgramStudiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = validator($request->all(), [
+            'txtName' => 'required|string|max:100'
+        ]) -> validate();
+        $prodi = new ProgramStudi();
+        $prodi -> nama_prodi = $validatedData['txtName'];
+        $prodi -> save();
+        return redirect(route('programStudiList'));
     }
 
     /**
