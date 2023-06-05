@@ -10,6 +10,13 @@ class Mahasiswa extends Model
 
     protected $primaryKey = 'nrp';
 
-    
-
+    protected $fillable = [
+        'nrp',
+        'nama',
+        'alamat',
+        'gender',
+        'tanggal_lahir',
+        'profile',
+        'kode_prodi'
+    ];
 }

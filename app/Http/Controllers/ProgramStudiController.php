@@ -14,7 +14,10 @@ class ProgramStudiController extends Controller
      */
     public function index()
     {
-        //
+        $data = ProgramStudi::all();
+        return view('programstudi.index',[
+            'programstudis'=> $data
+        ]);
     }
 
     /**
