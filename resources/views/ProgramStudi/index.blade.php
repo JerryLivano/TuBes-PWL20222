@@ -37,7 +37,7 @@
                                 <td>{{$programstudi->kode_prodi}}</td>
                                 <td>{{$programstudi->nama_prodi}}</td>
                                 <td>
-                                    <a class="btn btn-warning" role="button">Edit</a>
+                                    <a href="{{ route('EditProgramStudiList', ['kode_prodi' => $programstudi->kode_prodi]) }}" class="btn btn-warning" role="button">Edit</a>
                                     <a class="btn btn-danger" role="button">Delete</a>
                                 </td>
                             </tr>

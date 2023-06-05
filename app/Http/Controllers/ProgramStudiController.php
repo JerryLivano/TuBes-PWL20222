@@ -56,11 +56,13 @@ class ProgramStudiController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\ProgramStudi  $programStudi
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function edit(ProgramStudi $programStudi)
     {
-        //
+        return view('programstudi/edit', [
+            'programStudi' => $programStudi
+        ]);
     }
 
     /**
@@ -72,7 +74,13 @@ class ProgramStudiController extends Controller
      */
     public function update(Request $request, ProgramStudi $programStudi)
     {
-        //
+        $validatedData = validator($request->all(), [
+            'txtName' => 'required|string|max:100'
+        ])->validate();
+
+        $programStudi->nama_prodi = $validatedData['txtName'];
+        $programStudi->save();
+        return redirect(route('programStudiList'));
     }
 
     /**
