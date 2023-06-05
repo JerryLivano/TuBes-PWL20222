@@ -24,26 +24,30 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header text-right">
-                <a href="{{route('createGenre')}}" class="btn btn-primary" role="button">Open Genre Form</a>
+                <a href="#" class="btn btn-primary" role="button">Open Genre Form</a>
 
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th>Kode Matkul</th>
+                        <th>Nama Matkul</th>
+                        <th>Semester</th>
+                        <th>Beban SKS</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($genres as $genre)
+                    @foreach($mata_kuliahs as $matakuliah)
                         <tr>
-                            <td>{{$genre -> id}}</td>
-                            <td>{{$genre -> name}}</td>
+                            <td>{{$matakuliah -> kode_matkul}}</td>
+                            <td>{{$matakuliah -> nama_matkul}}</td>
+                            <td>{{$matakuliah -> semester}}</td>
+                            <td>{{$matakuliah -> beban_sks}}</td>
                             <td>
-                                <a href="{{ route('editGenre',['id' => $genre->id]) }}" class="btn btn-warning" role="button">Edit</a>
-                                <a href="{{ route('deleteGenre',['id' => $genre->id]) }}" class="btn btn-danger" role="button">Delete</a>
+                                <a href="#" class="btn btn-warning" role="button">Edit</a>
+                                <a href="#" class="btn btn-danger" role="button">Delete</a>
                             </td>
                         </tr>
                     @endforeach
