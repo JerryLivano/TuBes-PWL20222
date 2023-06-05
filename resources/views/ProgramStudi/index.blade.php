@@ -32,13 +32,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($programstudis as $programstudi )
+                        @foreach ($programstudis as $programstudi)
                             <tr>
                                 <td>{{$programstudi->kode_prodi}}</td>
                                 <td>{{$programstudi->nama_prodi}}</td>
                                 <td>
                                     <a class="btn btn-warning" role="button">Edit</a>
-                                    <a class="btn btn-danger" role="button">Delete</a>
+                                    <a href="{{route('deleteProgramStudi',['kode_prodi'=>$programstudi->kode_prodi])}}" class="btn btn-danger" role="button">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
