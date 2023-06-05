@@ -6,7 +6,7 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1 class="m-0 text-dark">Starter</h1>
+				<h1 class="m-0 text-dark">Program Studi</h1>
 			</div><!-- /.col -->
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
@@ -23,12 +23,16 @@
 <div class="content">
 	<div class="container-fluid">
         <div class="card">
+        <div class="card-header text-right">
+                <a href="{{ route('createProgramStudi') }}" class="btn btn-primary" role="button">Input Program Studi</a>
+            </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                         <tr>
                             <th>Kode Prodi</th>
                             <th>Nama Prodi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,8 +41,8 @@
                                 <td>{{$programstudi->kode_prodi}}</td>
                                 <td>{{$programstudi->nama_prodi}}</td>
                                 <td>
-                                    <a class="btn btn-warning" role="button">Edit</a>
-                                    <a href="{{route('deleteProgramStudi',['kode_prodi'=>$programstudi->kode_prodi])}}" class="btn btn-danger" role="button">Delete</a>
+                                    <a href="{{ route('EditProgramStudiList', ['kode_prodi' => $programstudi->kode_prodi]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
+                                    <a href="{{route('deleteProgramStudi',['kode_prodi'=>$programstudi->kode_prodi])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
