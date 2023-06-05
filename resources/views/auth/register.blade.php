@@ -57,11 +57,15 @@
             </div>
 
             <div class="input-group mb-3">
-                <input id="role" type="text" class="form-control @error('role') is-invalid @enderror"
+                <select id="role" type="text" class="form-control @error('role') is-invalid @enderror"
                     placeholder="Role" name="role" value="{{ old('role') }}" required autocomplete="role"
                     autofocus>
+                    <option value="" selected disabled>Select Role</option>
+                    <option value="Mahasiswa">Mahasiswa</option>
+                    <option value="Program Studi">Program Studi</option>
+                </select>
                 <div class="input-group-append input-group-text">
-                    <span class="fa fa-anchor"></span>
+                    <span class="fa fa-users"></span>
                 </div>
             </div>
             @error('role')
