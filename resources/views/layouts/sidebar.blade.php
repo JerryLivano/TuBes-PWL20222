@@ -31,6 +31,24 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('mahasiswaList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-user-circle"></i>
+                        <p>Mahasiswa</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('mataKuliahList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>Mata Kuliah</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('programStudiList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-graduation-cap"></i>
+                        <p>Program Studi</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <form id="logout-form" action="{{route('logout')}}" method="post">
                         @csrf
                     </form>

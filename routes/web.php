@@ -29,8 +29,8 @@ Auth::routes(['verify' => false, 'reset' => false]);
 
 Route::middleware('auth')->group(function() {
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-});
 Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswaList');
 Route::get('/programstudi',[ProgramStudiController::class,'index'])->name('programStudiList');
 Route::get('/mahasiswaprogramstudi',[MahasiswaMemilikiMatkulController::class,'index'])->name('mahasiswaProgramStudiList');
 Route::get('/mata_kuliah', [MataKuliahController::class,'index']) -> name('mataKuliahList');
+});

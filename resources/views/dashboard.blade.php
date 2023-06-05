@@ -12,7 +12,8 @@
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item active">Dashboard</li>
 				</ol>
-			</div><!-- /.col -->
+			</div>
+			<!-- /.col -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </div>
