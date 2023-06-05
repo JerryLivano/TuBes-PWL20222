@@ -97,6 +97,7 @@ class ProgramStudiController extends Controller
      */
     public function destroy(ProgramStudi $programStudi)
     {
-        //
+        $programStudi->delete();
+        return redirect(route('programStudiList'));
     }
 }

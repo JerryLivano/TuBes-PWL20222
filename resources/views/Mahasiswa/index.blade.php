@@ -48,7 +48,7 @@
                                 <td>{{$mahasiswa->kode_prodi}}</td>
                                 <td>
                                     <a class="btn btn-warning" role="button">Edit</a>
-                                    <a class="btn btn-danger" role="button">Delete</a>
+                                    <a href="{{route('deleteMahasiswa',['nrp'=>$mahasiswa->nrp])}}" class="btn btn-danger" role="button">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

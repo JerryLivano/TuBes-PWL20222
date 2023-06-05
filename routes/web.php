@@ -27,6 +27,7 @@ Route::get('/starter', function() {
 
 Auth::routes(['verify' => false, 'reset' => false]);
 
+
 Route::middleware('auth')->group(function() {
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswaList');
@@ -37,5 +38,7 @@ Route::get('/programstudi/create', [ProgramStudiController::class, 'create'])->n
 Route::post('/programstudi/create', [ProgramStudiController::class, 'store'])->name('storeProgramStudi');
 Route::get('/mahasiswaprogramstudi',[MahasiswaMemilikiMatkulController::class,'index'])->name('mahasiswaProgramStudiList');
 Route::get('/mata_kuliah', [MataKuliahController::class,'index']) -> name('mataKuliahList');
+Route::get('/programstudi/delete/{programStudi}',[ProgramStudiController::class,'destroy']) -> name('deleteProgramStudi');
+Route::get('/mahasiswa/delete/{mahasiswa}',[MahasiswaController::class,'destroy']) -> name('deleteMahasiswa');
 
 });
