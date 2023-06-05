@@ -56,6 +56,20 @@
                 </div>
             </div>
 
+            <div class="input-group mb-3">
+                <input id="role" type="text" class="form-control @error('role') is-invalid @enderror"
+                    placeholder="Role" name="role" value="{{ old('role') }}" required autocomplete="role"
+                    autofocus>
+                <div class="input-group-append input-group-text">
+                    <span class="fa fa-anchor"></span>
+                </div>
+            </div>
+            @error('role')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
             <div class="row">
                 <div class="col-4 offset-8">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">{{ __('Register') }}</button>
