@@ -23,6 +23,10 @@
 <div class="content">
     <div class="container-fluid">
         <div class="card">
+            <div class="card-header text-right">
+                <a href="#" class="btn btn-primary" role="button">Input Mata Kuliah</a>
+
+            </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
                     <thead>
