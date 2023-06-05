@@ -14,7 +14,10 @@ class MahasiswaMemilikiMatkulController extends Controller
      */
     public function index()
     {
-        //
+        $data = MahasiswaMemilikiMatkul::all();
+        return view('mahasiswamemilikimatkul.index',[
+            'mahasiswamemilikimatkuls'=> $data
+        ]);
     }
 
     /**
