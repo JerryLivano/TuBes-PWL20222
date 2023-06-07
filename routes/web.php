@@ -18,6 +18,7 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\UserManagementController;
 use App\Mahasiswa;
 use App\ProgramStudi;
+use App\Http\Controllers\MataKuliahDetailController;
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -27,7 +28,6 @@ Route::get('/starter', function () {
 });
 
 Auth::routes(['verify' => false, 'reset' => false]);
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -47,4 +47,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/usermanagement/delete/{users}', [UserManagementController::class, 'destroy'])->name('deleteUser');
     Route::get('/usermanagement/edit/{users}', [UserManagementController::class, 'edit'])->name('EditUserList');
     Route::post('/usermanagement/edit/{users}', [UserManagementController::class, 'update'])->name('UpdateUserList');
+    Route::get('/matakuliahdetail',[MataKuliahDetailController::class,'index']) -> name('mataKuliahDetailList');
+    Route::get('/matakuliahdetail/create', [MataKuliahDetailController::class, 'create'])->name('createMataKuliahDetail');
+    Route::post('/matakuliahdetail/create', [MataKuliahDetailController::class, 'store'])->name('storeMataKuliahDetail');
+    Route::get('/matakuliahdetail/delete/{mataKuliahDetail}',[MataKuliahDetailController::class,'destroy']) -> name('deleteMataKuliahDetail');
+    Route::post('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'update'])->name('UpdateMataKuliahDetail');
+    Route::get('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'edit'])->name('EditMataKuliahDetail');
 });
