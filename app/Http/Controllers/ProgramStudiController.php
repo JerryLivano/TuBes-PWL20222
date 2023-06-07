@@ -15,8 +15,8 @@ class ProgramStudiController extends Controller
     public function index()
     {
         $data = ProgramStudi::all();
-        return view('programstudi.index',[
-            'programstudis'=> $data
+        return view('programstudi.index', [
+            'programstudis' => $data
         ]);
     }
 
@@ -40,10 +40,10 @@ class ProgramStudiController extends Controller
     {
         $validatedData = validator($request->all(), [
             'txtName' => 'required|string|max:100'
-        ]) -> validate();
+        ])->validate();
         $prodi = new ProgramStudi();
-        $prodi -> nama_prodi = $validatedData['txtName'];
-        $prodi -> save();
+        $prodi->nama_prodi = $validatedData['txtName'];
+        $prodi->save();
         return redirect(route('programStudiList'));
     }
 
