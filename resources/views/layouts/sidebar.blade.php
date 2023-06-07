@@ -47,6 +47,12 @@
                         <p>Program Studi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('ruanganList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-trello"></i>
+                        <p>Ruangan</p>
+                    </a>
+                </li>
                 @if(Auth::user()->role =='Program Studi')
                 <li class="nav-item">
                     <a href="{{route('userList')}}" class="nav-link">

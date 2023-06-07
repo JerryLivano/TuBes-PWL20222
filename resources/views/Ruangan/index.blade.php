@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Mata Kuliah Detail</h1>
+                <h1 class="m-0 text-dark">Ruangan</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Mata Kuliah Detail</li>
+                    <li class="breadcrumb-item active">Ruangan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,36 +24,26 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header text-right">
-                <a href="{{route('createMataKuliahDetail')}}" class="btn btn-primary" role="button">Input Mata Kuliah Detail</a>
+                <a href="{{route('createRuangan')}}" class="btn btn-primary" role="button">Input Ruangan</a>
 
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
-                        <th>Tipe</th>
-                        <th>Kuota</th>
-                        <th>Beban SKS</th>
-                        <th>Hari</th>
-                        <th>Jam</th>
-                        <th>Kode Matkul</th>
                         <th>Kode Ruang</th>
+                        <th>Nama Ruang</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($matakuliahdetails as $matakuliahdetail)
+                    @foreach($ruangans as $ruangan)
                         <tr>
-                            <td>{{$matakuliahdetail -> tipe}}</td>
-                            <td>{{$matakuliahdetail -> kuota}}</td>
-                            <td>{{$matakuliahdetail -> beban_sks}}</td>
-                            <td>{{$matakuliahdetail -> hari}}</td>
-                            <td>{{$matakuliahdetail -> jam}}</td>
-                            <td>{{$matakuliahdetail -> kode_matkul}}</td>
-                            <td>{{$matakuliahdetail -> kode_ruang}}</td>
+                            <td>{{$ruangan -> kode_ruang}}</td>
+                            <td>{{$ruangan -> nama_ruang}}</td>
                             <td>
-                                <a href="#" class="btn btn-warning" role="button">Edit</a>
-                                <a href="#" class="btn btn-danger" role="button">Delete</a>
+                                <a href="{{ route('editRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-warning" role="button" style="cursor: pointer;" class="btn btn-warning" role="button">Edit</a>
+                                <a href="{{ route('deleteRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-danger" role="button">Delete</a>
                             </td>
                         </tr>
                     @endforeach

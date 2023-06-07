@@ -18,7 +18,10 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\UserManagementController;
 use App\Mahasiswa;
 use App\ProgramStudi;
+use App\Ruangan;
 use App\Http\Controllers\MataKuliahDetailController;
+use App\Http\Controllers\RuanganController;
+
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -50,7 +53,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/matakuliahdetail',[MataKuliahDetailController::class,'index']) -> name('mataKuliahDetailList');
     Route::get('/matakuliahdetail/create', [MataKuliahDetailController::class, 'create'])->name('createMataKuliahDetail');
     Route::post('/matakuliahdetail/create', [MataKuliahDetailController::class, 'store'])->name('storeMataKuliahDetail');
-    Route::get('/matakuliahdetail/delete/{mataKuliahDetail}',[MataKuliahDetailController::class,'destroy']) -> name('deleteMataKuliahDetail');
-    Route::post('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'update'])->name('UpdateMataKuliahDetail');
-    Route::get('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'edit'])->name('EditMataKuliahDetail');
+    Route::get('/matakuliahdetail/delete/{mataKuliahDetail}',[MataKuliahDetailController::class,'destroy']) -> name('deleteMataKuliahDetailList');
+    Route::post('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'update'])->name('UpdateMataKuliahDetailList');
+    Route::get('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'edit'])->name('EditMataKuliahDetailList');
+
+    Route::get('/ruangan',[RuanganController::class,'index']) -> name('ruanganList');
+    Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('createRuangan');
+    Route::post('/ruangan/create', [RuanganController::class, 'store'])->name('storeRuangan');
+    Route::get('/ruangan/delete/{ruangan}',[RuanganController::class,'destroy']) -> name('deleteRuanganList');
+    Route::post('/ruangan/edit/{ruangan}',[RuanganController::class,'update'])->name('updateRuanganList');
+    Route::get('/ruangan/edit/{ruangan}',[MataKuliahDetailController::class,'edit'])->name('editRuanganList');
 });
