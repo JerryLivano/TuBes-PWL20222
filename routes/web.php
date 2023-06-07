@@ -15,39 +15,42 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaMemilikiMatkulController;
 use App\Http\Controllers\ProgramStudiController;
 use App\Http\Controllers\MataKuliahController;
+use App\Http\Controllers\UserManagementController;
 use App\Mahasiswa;
 use App\ProgramStudi;
 use App\Http\Controllers\MataKuliahDetailController;
 
-Route::get('/', function() {
+Route::get('/', function () {
     return redirect(route('login'));
 });
-Route::get('/starter', function() {
+Route::get('/starter', function () {
     return view('starter');
 });
 
 Auth::routes(['verify' => false, 'reset' => false]);
 
-
-Route::middleware('auth')->group(function() {
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/mahasiswaprogramstudi',[MahasiswaMemilikiMatkulController::class,'index'])->name('mahasiswaProgramStudiList');
-Route::get('/mata_kuliah', [MataKuliahController::class,'index']) -> name('mataKuliahList');
-Route::get('/mahasiswa/delete/{mahasiswa}',[MahasiswaController::class,'destroy']) -> name('deleteMahasiswa');
-
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswaList');
+    Route::get('/programstudi', [ProgramStudiController::class, 'index'])->name('programStudiList');
+    Route::get('/programstudi/edit/{programStudi}', [ProgramStudiController::class, 'edit'])->name('EditProgramStudiList');
+    Route::post('/programstudi/edit/{programStudi}', [ProgramStudiController::class, 'update'])->name('UpdateProgramStudiList');
+    Route::get('/programstudi/create', [ProgramStudiController::class, 'create'])->name('createProgramStudi');
+    Route::post('/programstudi/create', [ProgramStudiController::class, 'store'])->name('storeProgramStudi');
+    Route::get('/mahasiswaprogramstudi', [MahasiswaMemilikiMatkulController::class, 'index'])->name('mahasiswaProgramStudiList');
+    Route::get('/mata_kuliah', [MataKuliahController::class, 'index'])->name('mataKuliahList');
+    Route::get('/programstudi/delete/{programStudi}', [ProgramStudiController::class, 'destroy'])->name('deleteProgramStudi');
+    Route::get('/mahasiswa/delete/{mahasiswa}', [MahasiswaController::class, 'destroy'])->name('deleteMahasiswa');
+    Route::get('/usermanagement', [UserManagementController::class, 'index'])->name('userList');
+    Route::get('/usermanagement/create', [UserManagementController::class, 'create'])->name('createUserList');
+    Route::post('/usermanagement/create', [UserManagementController::class, 'store'])->name('storeUserList');
+    Route::get('/usermanagement/delete/{users}', [UserManagementController::class, 'destroy'])->name('deleteUser');
+    Route::get('/usermanagement/edit/{users}', [UserManagementController::class, 'edit'])->name('EditUserList');
+    Route::post('/usermanagement/edit/{users}', [UserManagementController::class, 'update'])->name('UpdateUserList');
+    Route::get('/matakuliahdetail',[MataKuliahDetailController::class,'index']) -> name('mataKuliahDetailList');
+    Route::get('/matakuliahdetail/create', [MataKuliahDetailController::class, 'create'])->name('createMataKuliahDetail');
+    Route::post('/matakuliahdetail/create', [MataKuliahDetailController::class, 'store'])->name('storeMataKuliahDetail');
+    Route::get('/matakuliahdetail/delete/{mataKuliahDetail}',[MataKuliahDetailController::class,'destroy']) -> name('deleteMataKuliahDetail');
+    Route::post('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'update'])->name('UpdateMataKuliahDetail');
+    Route::get('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'edit'])->name('EditMataKuliahDetail');
 });
-Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswaList');
-
-Route::get('/matakuliahdetail',[MataKuliahDetailController::class,'index']) -> name('mataKuliahDetailList');
-Route::get('/matakuliahdetail/create', [MataKuliahDetailController::class, 'create'])->name('createMataKuliahDetail');
-Route::post('/matakuliahdetail/create', [MataKuliahDetailController::class, 'store'])->name('storeMataKuliahDetail');
-Route::get('/matakuliahdetail/delete/{mataKuliahDetail}',[MataKuliahDetailController::class,'destroy']) -> name('deleteMataKuliahDetail');
-Route::post('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'update'])->name('UpdateMataKuliahDetail');
-Route::get('/matakuliahdetail/edit/{mataKuliahDetail}',[MataKuliahDetailController::class,'edit'])->name('EditMataKuliahDetail');
-
-Route::get('/programstudi',[ProgramStudiController::class,'index'])->name('programStudiList');
-Route::get('/programstudi/create', [ProgramStudiController::class, 'create'])->name('createProgramStudi');
-Route::post('/programstudi/create', [ProgramStudiController::class, 'store'])->name('storeProgramStudi');
-Route::get('/programstudi/delete/{programStudi}',[ProgramStudiController::class,'destroy']) -> name('deleteProgramStudi');
-Route::post('/programstudi/edit/{programStudi}',[ProgramStudiController::class,'update'])->name('UpdateProgramStudiList');
-Route::get('/programstudi/edit/{programStudi}',[ProgramStudiController::class,'edit'])->name('EditProgramStudiList');
