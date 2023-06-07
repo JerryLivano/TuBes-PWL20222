@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProgramStudi;
+use App\Ruangan;
 use Illuminate\Http\Request;
 
-class ProgramStudiController extends Controller
+class RuanganController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class ProgramStudiController extends Controller
      */
     public function index()
     {
-        $data = ProgramStudi::all();
-        return view('programstudi.index', [
-            'programstudis' => $data
+        $data = Ruangan::all();
+        return view('ruangan.index',[
+            'ruangans' => $data
         ]);
     }
 
@@ -27,7 +27,7 @@ class ProgramStudiController extends Controller
      */
     public function create()
     {
-        return view('programstudi/create');
+        return view('ruangan/create');
     }
 
     /**
@@ -39,21 +39,24 @@ class ProgramStudiController extends Controller
     public function store(Request $request)
     {
         $validatedData = validator($request->all(), [
+            'txtId' => 'required|string|max:100',
             'txtName' => 'required|string|max:100'
         ])->validate();
-        $prodi = new ProgramStudi();
-        $prodi->nama_prodi = $validatedData['txtName'];
-        $prodi->save();
-        return redirect(route('programStudiList'));
+        $ruangan = new Ruangan();
+        $ruangan->kode_ruang = $validatedData['txtId'];
+        $ruangan->save();
+        $ruangan->nama_ruang = $validatedData['txtName'];
+        $ruangan->save();
+        return redirect(route('ruanganList'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProgramStudi  $programStudi
+     * @param  \App\Ruangan  $mataKuliah
      * @return \Illuminate\Http\Response
      */
-    public function show(ProgramStudi $programStudi)
+    public function show(Ruangan $ruangan)
     {
         //
     }
@@ -61,13 +64,13 @@ class ProgramStudiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProgramStudi  $programStudi
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @param  \App\Ruangan  $mataKuliah
+     * @return \Illuminate\Http\Response
      */
-    public function edit(ProgramStudi $programStudi)
+    public function edit(Ruangan $ruangan)
     {
-        return view('programstudi/edit', [
-            'programStudi' => $programStudi
+        return view('ruangan/edit', [
+            'ruangan' => $ruangan
         ]);
     }
 
@@ -75,29 +78,29 @@ class ProgramStudiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProgramStudi  $programStudi
+     * @param  \App\Ruangan  $mataKuliah
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProgramStudi $programStudi)
+    public function update(Request $request, Ruangan $ruangan)
     {
         $validatedData = validator($request->all(), [
             'txtName' => 'required|string|max:100'
         ])->validate();
 
-        $programStudi->nama_prodi = $validatedData['txtName'];
-        $programStudi->save();
-        return redirect(route('programStudiList'));
+        $ruangan->nama_ruang = $validatedData['txtName'];
+        $ruangan->save();
+        return redirect(route('ruanganList'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProgramStudi  $programStudi
+     * @param  \App\MataKuliah  $mataKuliah
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProgramStudi $programStudi)
+    public function destroy(Ruangan $ruangan)
     {
-        $programStudi->delete();
-        return redirect(route('programStudiList'));
+        $ruangan->delete();
+        return redirect(route('ruanganList'));
     }
 }
