@@ -27,7 +27,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('mahasiswa/create');
     }
 
     /**
@@ -38,7 +38,13 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = validator($request->all(), [
+            'txtName' => 'required|string|max:100'
+        ]) -> validate();
+        $mahasiswa = new Mahasiswa();
+        $mahasiswa -> nama_prodi = $validatedData['txtName'];
+        $mahasiswa -> save();
+        return redirect(route('mahasiswaList'));
     }
 
     /**
