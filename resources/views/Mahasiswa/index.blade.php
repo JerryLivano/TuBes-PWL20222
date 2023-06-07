@@ -23,6 +23,11 @@
 <div class="content">
 	<div class="container-fluid">
         <div class="card">
+            <div class="card-header text-right">
+                    <a href="{{ route('createMahasiswa') }}" class="btn btn-primary" role="button">Input Mahasiswa</a>
+            </div>
+        </div>
+        <div class="card">
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
                     <thead>

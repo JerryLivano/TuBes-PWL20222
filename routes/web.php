@@ -40,5 +40,14 @@ Route::get('/mahasiswaprogramstudi',[MahasiswaMemilikiMatkulController::class,'i
 Route::get('/mata_kuliah', [MataKuliahController::class,'index']) -> name('mataKuliahList');
 Route::get('/programstudi/delete/{programStudi}',[ProgramStudiController::class,'destroy']) -> name('deleteProgramStudi');
 Route::get('/mahasiswa/delete/{mahasiswa}',[MahasiswaController::class,'destroy']) -> name('deleteMahasiswa');
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('createMahasiswa');
+Route::post('/mahasiswa/create', [MahasiswaController::class, 'store'])->name('storeMahasiswa');
+Route::get('/mahasiswa/edit/{mahasiswa}',[MahasiswaController::class,'edit'])->name('editMahasiswa');
+Route::post('/mahasiswa/edit/{mahasiswa}',[MahasiswaController::class,'update'])->name('updateMahasiswa');
 
+Route::get('/mata_kuliah/create', [MataKuliahController::class, 'create'])->name('createMataKuliah');
+Route::post('/mata_kuliah/create', [MataKuliahController::class, 'store'])->name('storeMataKuliah');
+Route::get('/mata_kuliah/edit/{mataKuliah}',[MataKuliahController::class,'edit'])->name('editMataKuliah');
+Route::post('/mata_kuliah/edit/{mataKuliah}',[MataKuliahController::class,'update'])->name('updateMataKuliah');
+Route::get('/mata_kuliah/delete/{mataKuliah}',[MataKuliahController::class,'destroy']) -> name('deleteMataKuliah');
 });

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mahasiswa;
 use App\MataKuliah;
+use App\ProgramStudi;
 use Illuminate\Http\Request;
 
 class MataKuliahController extends Controller
@@ -27,7 +29,8 @@ class MataKuliahController extends Controller
      */
     public function create()
     {
-        //
+        $prodi = ProgramStudi::all();
+        return view('mata_kuliah/create',compact('prodi'));
     }
 
     /**
@@ -38,7 +41,19 @@ class MataKuliahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = validator($request->all(), [
+            'txtKodeMatkul' => 'required|string|max:50',
+            'txtName' => 'required|string|max:100',
+            'txtSemester' => 'required|string|max:50',
+            'txtKodeProdi' => 'required|int'
+        ]) -> validate();
+        $matkul = new MataKuliah();
+        $matkul -> kode_matkul = $validatedData['txtKodeMatkul'];
+        $matkul -> nama_matkul = $validatedData['txtName'];
+        $matkul -> semester = $validatedData['txtSemester'];
+        $matkul -> kode_prodi = $validatedData['txtKodeProdi'];
+        $matkul -> save();
+        return redirect(route('mataKuliahList'));
     }
 
     /**
@@ -60,7 +75,10 @@ class MataKuliahController extends Controller
      */
     public function edit(MataKuliah $mataKuliah)
     {
-        //
+        $prodi = ProgramStudi::all();
+        return view('mata_kuliah/edit', [
+            'mataKuliah' => $mataKuliah
+        ],compact('prodi'));
     }
 
     /**
@@ -72,7 +90,18 @@ class MataKuliahController extends Controller
      */
     public function update(Request $request, MataKuliah $mataKuliah)
     {
-        //
+        $validatedData = validator($request->all(), [
+            'txtKodeMatkul' => 'required|string|max:50',
+            'txtName' => 'required|string|max:100',
+            'txtSemester' => 'required|string|max:50',
+            'txtKodeProdi' => 'required|int'
+        ])->validate();
+        $mataKuliah -> kode_matkul = $validatedData['txtKodeMatkul'];
+        $mataKuliah -> nama_matkul = $validatedData['txtName'];
+        $mataKuliah -> semester = $validatedData['txtSemester'];
+        $mataKuliah -> kode_prodi = $validatedData['txtKodeProdi'];
+        $mataKuliah -> save();
+        return redirect(route('mataKuliahList'));
     }
 
     /**
@@ -83,6 +112,7 @@ class MataKuliahController extends Controller
      */
     public function destroy(MataKuliah $mataKuliah)
     {
-        //
+        $mataKuliah->delete();
+        return redirect(route('mataKuliahList'));
     }
 }
