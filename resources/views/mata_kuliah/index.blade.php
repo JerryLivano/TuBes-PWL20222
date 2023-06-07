@@ -54,6 +54,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="card-header text-right">
+                <a href="{{route('mataKuliahDetailList')}}" class="btn btn-primary" role="button">Mata Kuliah Detail</a>
+            </div>
         </div>
         {{-- main content here --}}
 
