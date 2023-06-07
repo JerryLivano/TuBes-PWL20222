@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
 {
@@ -47,7 +48,7 @@ class UserManagementController extends Controller
         $users = new User();
         $users->name = $validatedData['name'];
         $users->email = $validatedData['email'];
-        $users->password = $validatedData['password'];
+        $users->password = Hash::make($validatedData['password']);
         $users->role = $validatedData['role'];
         $users->save();
         return redirect(route('userList'));
