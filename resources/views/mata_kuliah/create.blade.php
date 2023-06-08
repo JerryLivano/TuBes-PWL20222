@@ -28,16 +28,22 @@
             <div class="card-body p-3">
                 <form action="{{ route('storeMataKuliah') }}" method="post">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group my-3">
                         <label for="txtKodeMatkul">Kode Mata Kuliah</label>
                         <input type="text" id="txtKodeMatkul" name="txtKodeMatkul" class="form-control" required placeholder="Kode Mata Kuliah">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="txtName">Nama Mata Kuliah</label>
                         <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="Nama Mata Kuliah">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="txtSemester">Semester</label>
                         <input type="text" id="txtSemester" name="txtSemester" class="form-control" required placeholder="Semester">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="txtKodeProdi">Program Studi</label>
                         <select name="txtKodeProdi" class="form-control">
-                            <option>Select Program Studi</option><!--selected by default-->
+                            <option disabled selected>Select Program Studi</option><!--selected by default-->
                             @foreach ($prodi as $prodis)
                                 <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
                             @endforeach

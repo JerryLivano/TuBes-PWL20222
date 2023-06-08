@@ -17,6 +17,7 @@ class Mahasiswa extends Model
         'gender',
         'tanggal_lahir',
         'profile',
-        'kode_prodi'
+        'kode_prodi',
+        'user_id'
     ];
 }

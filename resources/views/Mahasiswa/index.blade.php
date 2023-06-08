@@ -6,8 +6,8 @@
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1 class="m-0 text-dark">Starter</h1>
-			</div><!-- /.col -->
+				<h1 class="m-0 text-dark">Mahasiswa</h1>
+			</div>
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
@@ -39,6 +39,8 @@
                             <th>Tanggal Lahir</th>
                             <th>Profile</th>
                             <th>Kode Prodi</th>
+                            <th>ID User</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +53,7 @@
                                 <td>{{$mahasiswa->tanggal_lahir}}</td>
                                 <td>{{$mahasiswa->profile}}</td>
                                 <td>{{$mahasiswa->kode_prodi}}</td>
+                                <td>{{$mahasiswa->user_id}}</td>
                                 <td>
                                     <a class="btn btn-warning" role="button">Edit</a>
                                     <a href="{{route('deleteMahasiswa',['nrp'=>$mahasiswa->nrp])}}" class="btn btn-danger" role="button">Delete</a>

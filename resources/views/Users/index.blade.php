@@ -33,8 +33,8 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Password</th>
                             <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,6 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->password}}</td>
                             <td>{{$user->role}}</td>
                             <td>
                                 <a href="{{ route('EditUserList', ['id' => $user->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
