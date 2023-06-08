@@ -28,15 +28,15 @@
             <div class="card-body p-3">
                 <form action="{{ route('storeMataKuliahDetail') }}" method="post">
                     @csrf
-                    <div class="text-right">
-                    <label for="txtName">Tipe</label>
-                    <select id="tipe" type="text" class="form-control @error('tipe') is-invalid @enderror"
-                        placeholder="Tipe" name="tipe" value="{{ old('tipe') }}" required autocomplete="tipe"
-                        autofocus>
-                        <option value="" selected disabled>Select Tipe</option>
-                        <option value="Teori">Teori</option>
-                        <option value="Praktikum">Praktikum</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="txtName">Tipe</label>
+                        <select id="tipe" type="text" class="form-control @error('tipe') is-invalid @enderror"
+                            placeholder="Tipe" name="tipe" value="{{ old('tipe') }}" required autocomplete="tipe"
+                            autofocus>
+                            <option value="" selected disabled>Select Tipe</option>
+                            <option value="Teori">Teori</option>
+                            <option value="Praktikum">Praktikum</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="txtName">Kuota</label>
@@ -54,7 +54,7 @@
                         <label for="txtName">Jam</label>
                         <input type="time" id="txtName" name="txtName" class="form-control" required placeholder="Jam">
                     </div>
-                    <div class="text-right">
+                    <div class="form-group">
                         <label for="txtName">Kode Mata Kuliah</label>
                         <select id="kodematkul" type="text" class="form-control @error('kodematkul') is-invalid @enderror"
                             placeholder="KodeMatkul" name="kodematkul" value="{{ old('kodematkul') }}" required autocomplete="kodematkul"
@@ -64,7 +64,7 @@
                             <option value="Praktikum">Praktikum</option>
                         </select>
                     </div>
-                    <div class="text-right">
+                    <div class="form-group">
                         <label for="txtName">Kode</label>
                         <select id="koderuang" type="text" class="form-control @error('koderuang') is-invalid @enderror"
                             placeholder="KodeRuang" name="koderuang" value="{{ old('koderuang') }}" required autocomplete="koderuang"

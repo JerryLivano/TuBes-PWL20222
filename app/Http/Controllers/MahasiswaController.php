@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mahasiswa;
+use App\ProgramStudi;
+use App\User;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -27,7 +29,8 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('mahasiswa/create');
+        $prodi = ProgramStudi::all();
+        return view('mahasiswa/create', compact('prodi'));
     }
 
     /**
@@ -39,7 +42,12 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $validatedData = validator($request->all(), [
-            'txtName' => 'required|string|max:100'
+            'nrp' => 'required|string|max:50',
+            'txtName' => 'required|string|max:100',
+            'alamat' => 'required|string|max:100',
+            'gender' => 'required|string|max:100',
+            'tgl_lahir' => 'required|date',
+            'prodi' => 'required|int',
         ]) -> validate();
         $mahasiswa = new Mahasiswa();
         $mahasiswa -> nama_prodi = $validatedData['txtName'];
