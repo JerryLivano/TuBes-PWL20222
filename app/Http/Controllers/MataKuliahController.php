@@ -7,6 +7,7 @@ use App\MataKuliah;
 use App\ProgramStudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MataKuliahController extends Controller
 {
@@ -22,8 +23,14 @@ class MataKuliahController extends Controller
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
-        }elseif(Auth::user()->role =='Mahasiswa'){
-            $data = MataKuliah::all();
+        } elseif (Auth::user()->role =='Mahasiswa'){
+            // $data = MataKuliah::select('SELECT mata_kuliah.kode_matkul, mata_kuliah.nama_matkul, mata_kuliah.semester, mata_kuliah.beban_sks, mata_kuliah.deskripsi, mata_kuliah.kode_prodi FROM mata_kuliah INNER JOIN program_studi ON mata_kuliah.kode_prodi = program_studi.kode_prodi INNER JOIN users ON users.kode_prodi = program_studi.kode_prodi WHERE users.id = "2172000"');
+            $data = DB::table('mata_kuliah')
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')
+            ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->where('users.id', Auth::user()->id)
+            ->get();
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
             ]);
