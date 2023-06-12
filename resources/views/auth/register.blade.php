@@ -1,12 +1,27 @@
 @extends('auth.master')
 
 @section('content')
+
 <div class="card">
     <div class="card-body login-card-body">
         <p class="login-box-msg">{{ __('Register') }}</p>
 
         <form action="{{route('register')}}" method="post">
             @csrf
+
+            <div class="input-group mb-3">
+                <input id="id" type="text" class="form-control @error('id') is-invalid @enderror"
+                    placeholder="NRP/NIK" name="id" value="{{ old('id') }}" required autocomplete="id"
+                    autofocus>
+                <div class="input-group-append input-group-text">
+                    <span class="fa fa-user"></span>
+                </div>
+            </div>
+            @error('id')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
 
             <div class="input-group mb-3">
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -62,13 +77,33 @@
                     autofocus>
                     <option value="" selected disabled>Select Role</option>
                     <option value="Mahasiswa">Mahasiswa</option>
-                    <option value="Program Studi">Program Studi</option>
+                    <option value="Admin">Admin</option>
                 </select>
                 <div class="input-group-append input-group-text">
                     <span class="fa fa-users"></span>
                 </div>
             </div>
             @error('role')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+
+            <div class="input-group mb-3">
+                <select id="kode_prodi" type="text" class="form-control @error('kode_prodi') is-invalid @enderror"
+                    placeholder="Kode Prodi" name="kode_prodi" value="{{ old('kode_prodi') }}" required autocomplete="kode_prodi"
+                    autofocus>
+                    <option value="" selected disabled>Prodi</option>
+                    {{$prodi = \App\ProgramStudi::all()}}
+                    @foreach ($prodi as $prodis)
+                        <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
+                    @endforeach
+                </select>
+                <div class="input-group-append input-group-text">
+                    <span class="fa fa-users"></span>
+                </div>
+            </div>
+            @error('kode_prodi')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
