@@ -6,6 +6,7 @@ use App\Mahasiswa;
 use App\MataKuliah;
 use App\ProgramStudi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MataKuliahController extends Controller
 {
@@ -16,10 +17,18 @@ class MataKuliahController extends Controller
      */
     public function index()
     {
-        $data = MataKuliah::all();
-        return view('mata_kuliah.index',[
-            'mata_kuliahs' => $data
-        ]);
+        if(Auth::user()->role =='Admin'){
+            $data = MataKuliah::all();
+            return view('mata_kuliah.index',[
+                'mata_kuliahs' => $data
+            ]);
+        }elseif(Auth::user()->role =='Mahasiswa'){
+            $data = MataKuliah::all();
+            return view('MataKuliahMahasiswa.index',[
+                'MataKuliahMahasiswa' => $data
+            ]);
+        }
+       
     }
 
     /**

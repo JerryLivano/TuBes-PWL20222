@@ -42,12 +42,12 @@
                         <p>Mata Kuliah</p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{route('programStudiList')}}" class="nav-link">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>Program Studi</p>
                     </a>
-                </li> --}}
+                </li>
                 <li class="nav-item">
                     <a href="{{route('perwalianList')}}" class="nav-link">
                         <i class="nav-icon fa fa-graduation-cap"></i>
@@ -64,6 +64,13 @@
                     <a href="{{route('userList')}}" class="nav-link">
                         <i class="nav-icon fa fa-address-card"></i>
                         <p>User Management</p>
+                    </a>
+                </li>
+                @elseif (Auth::user()->role =='Mahasiswa')
+                <li class="nav-item">
+                    <a href="{{route('mataKuliahMahasiswaList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>Mata Kuliah</p>
                     </a>
                 </li>
                 @endif
@@ -98,8 +105,8 @@
                             </a>
                         </li>
                     </ul>
-                </li> --}}
-                {{-- <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-th"></i>
                         <p>
