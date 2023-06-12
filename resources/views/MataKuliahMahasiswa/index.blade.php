@@ -23,7 +23,7 @@
 <div class="content">
     <div class="container-fluid">
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                     <tr>
                         <th>Kode Matkul</th>
@@ -32,6 +32,7 @@
                         <th>Beban SKS</th>
                         <th>Deskripsi</th>
                         <th>Kode Prodi</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,37 +44,10 @@
                                 <td>{{$matkul->beban_sks}}</td>
                                 <td>{{$matkul->deskripsi}}</td>
                                 <td>{{$matkul->kode_prodi}}</td>
+                                <td>
+                                    <a href="#" class="btn btn-success" role="button">Detail</a>
+                                </td>
                             </tr>
-                           
-                            <div class="dropdown-menu">
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                            value="option1" checked>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Tipe</th>
-                                                    <th>Kelas</th>
-                                                    <th>Kuota</th>
-                                                    <th>Hari</th>
-                                                    <th>Jam Awal</th>
-                                                    <th>Jam Akhir</th>
-                                                    <th>Kode Matkul</th>
-                                                    <th>Perwalian</th>
-                                                    <th>Kode Ruang</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($MataKuliahMahasiswa as $matdet)
-                                                    <td>{{$matdet->kode_matkul}}</td>
-                                                    <td>{{$matdet->kelas}}</td>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            <div>
                             
                         @endforeach
                     </tbody>
