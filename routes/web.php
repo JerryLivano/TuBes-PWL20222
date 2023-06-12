@@ -86,4 +86,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/perwalian/delete/{perwalian}', [PerwalianController::class, 'destroy'])->name('deletePerwalian');
     Route::post('/perwalian/edit/{perwalian}', [PerwalianController::class, 'update'])->name('updatePerwalian');
     Route::get('/perwalian/edit/{perwalian}', [PerwalianController::class, 'edit'])->name('editPerwalian');
+
+    
+    Route::get('/MataKuliahMahasiswa',[MataKuliahController::class,'index'])->name('mataKuliahMahasiswaList');
+
+    Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
 });

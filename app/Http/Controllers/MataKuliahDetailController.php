@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\MataKuliah;
 use App\MataKuliahDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MataKuliahDetailController extends Controller
 {
@@ -13,11 +15,18 @@ class MataKuliahDetailController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data = MataKuliahDetail::all();
-        return view('matakuliahdetail.index',[
-            'matakuliahdetails' => $data
-        ]);
+    {   
+        if(Auth::user()->role =='Admin'){
+            $data = MataKuliahDetail::all();
+            return view('matakuliahdetail.index',[
+                'matakuliahdetails' => $data
+            ]);
+        }elseif(Auth::user()->role =='Mahasiswa'){
+            $data = MataKuliahDetail::all();
+            return view('MataKuliahMahasiswa.index',[
+                'MataKuliahMahasiswas'=>$data
+            ]);
+        }
     }
 
     /**
