@@ -42,12 +42,12 @@
                         <p>Mata Kuliah</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('programStudiList')}}" class="nav-link">
                         <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>Program Studi</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="{{route('perwalianList')}}" class="nav-link">
                         <i class="nav-icon fa fa-graduation-cap"></i>

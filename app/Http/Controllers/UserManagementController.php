@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ProgramStudi;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
@@ -15,9 +17,12 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        $data = User::all();
+        $data = DB::table('users')
+            ->select('users.id', 'users.name', 'users.email', 'users.password', 'users.role', 'users.alamat', 'users.gender', 'users.tanggal_lahir', 'users.profile', 'program_studi.nama_prodi')
+            ->join('program_studi', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->get();
         return view('users.index', [
-            'users' => $data
+            'users' => $data,
         ]);
     }
 
@@ -40,16 +45,31 @@ class UserManagementController extends Controller
     public function store(Request $request)
     {
         $validatedData = validator($request->all(), [
+            'id' => ['required', 'string', 'max:50'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'string'],
+            'role' => ['nullable', 'required', 'string'],
+            'address' => ['nullable', 'string', 'max:100'],
+            'gender' => ['nullable', 'string', 'max:50'],
+            'tanggal_lahir' => ['nullable', 'date'],
+            'profile' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:10000'],
+            'kode_prodi' => ['required', 'int']
         ])->validate();
         $users = new User();
+        $users->id = $validatedData['id'];
         $users->name = $validatedData['name'];
         $users->email = $validatedData['email'];
         $users->password = Hash::make($validatedData['password']);
         $users->role = $validatedData['role'];
+        $users->alamat = $validatedData['address'];
+        if ($request['gender'] == '') {
+            $validatedData['gender'] = null;
+        }
+        $users->gender = $validatedData['gender'];
+        $users->tanggal_lahir = $validatedData['tanggal_lahir'];
+        $users->profile = $validatedData['profile'];
+        $users->kode_prodi = $validatedData['kode_prodi'];
         $users->save();
         return redirect(route('userList'));
     }
