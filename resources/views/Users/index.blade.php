@@ -34,6 +34,11 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Alamat</th>
+                            <th>Gender</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Foto Profile</th>
+                            <th>Prodi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,6 +49,11 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->role}}</td>
+                            <td>{{$user->alamat}}</td>
+                            <td>{{$user->gender}}</td>
+                            <td>{{$user->tanggal_lahir}}</td>
+                            <td>{{$user->profile}}</td>
+                            <td>{{$user->nama_prodi}}</td>
                             <td>
                                 <a href="{{ route('EditUserList', ['id' => $user->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                 <a href="{{ route('deleteUser',['id'=>$user->id])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>

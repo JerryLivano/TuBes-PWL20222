@@ -57,6 +57,43 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input id="alamat" type="text" class="form-control" placeholder="Alamat" name="alamat" value="{{ $user -> alamat }}">
+                    </div>
+
+                    <label for="gender">Jenis Kelamin</label>
+                    <div class="form-group">
+                        <select id="gender" type="text" class="form-control" placeholder="Gender" name="gender" autofocus>
+                            <option value="" selected disabled>Select Gender</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal_lahir</label>
+                        <input id="tanggal_lahir" type="date" class="form-control" placeholder="Tanggal Lahir" name="tanggal_lahir" value="{{ $user -> tanggal_lahir }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profil">Foto Profil</label>
+                        <input id="profil" type="file" class="form-control" placeholder="Foto Profil" name="profil" value="{{ $user -> profil }}">
+                    </div>
+
+                    <label for="kode_prodi">Prodi</label>
+                    <div class="input-group mb-3">
+                        <select id="kode_prodi" type="text" class="form-control"
+                            placeholder="Kode Prodi" name="kode_prodi" value="{{ $user -> nama_prodi }}" required autocomplete="kode_prodi"
+                            autofocus>
+                            <option selected disabled>Select Prodi</option>
+                            {{$prodi = \App\ProgramStudi::all()}}
+                            @foreach ($prodi as $prodis)
+                                <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="text-right">
                         <a href="{{ route('userList') }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
