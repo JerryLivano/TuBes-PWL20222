@@ -21,7 +21,7 @@
 <!-- /.content-header -->
 
 <!-- Main content -->
-<div class="content">
+<div class="content"> 
 	<div class="container-fluid">
 
         <div class="card">
@@ -30,7 +30,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="txtId">Kode Ruang</label>
-                        <input type="text" id="txtId" name="txtName" class="form-control" required placeholder="Kode Ruang">
+                        <input type="text" id="txtId" name="txtId" class="form-control" required placeholder="Kode Ruang">
                     </div>
                     <div class="form-group">
                         <label for="txtName">Nama Ruang</label>

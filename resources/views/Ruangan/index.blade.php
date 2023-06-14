@@ -18,7 +18,7 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-
+ 
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
@@ -28,7 +28,7 @@
 
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                     <tr>
                         <th>Kode Ruang</th>
