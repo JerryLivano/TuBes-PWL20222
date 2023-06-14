@@ -20,7 +20,7 @@ use App\Mahasiswa;
 use App\ProgramStudi;
 use App\Ruangan;
 use App\Http\Controllers\MataKuliahDetailController;
-use App\Http\Controllers\PerwalianController;
+use App\Http\Controllers\PerwalianController; 
 use App\Http\Controllers\RuanganController;
 
 
@@ -78,7 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ruangan/create', [RuanganController::class, 'store'])->name('storeRuangan');
     Route::get('/ruangan/delete/{ruangan}', [RuanganController::class, 'destroy'])->name('deleteRuanganList');
     Route::post('/ruangan/edit/{ruangan}', [RuanganController::class, 'update'])->name('updateRuanganList');
-    Route::get('/ruangan/edit/{ruangan}', [MataKuliahDetailController::class, 'edit'])->name('editRuanganList');
+    Route::get('/ruangan/edit/{ruangan}', [RuanganController::class, 'edit'])->name('editRuanganList');
 
     Route::get('/perwalian', [PerwalianController::class, 'index'])->name('perwalianList');
     Route::get('/perwalian/create', [PerwalianController::class, 'create'])->name('createPerwalian');
