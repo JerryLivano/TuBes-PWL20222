@@ -80,7 +80,7 @@
                         <select id="role" type="text" class="form-control @error('role') is-invalid @enderror" placeholder="Role" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
                             <option selected disabled>Select Role</option>
                             <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Program Studi">Program Studi</option>
+                            <option value="Admin">Admin</option>
                         </select>
                     </div>
                     @error('role')

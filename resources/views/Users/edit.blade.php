@@ -50,10 +50,10 @@
 
                     <div class="form-group">
                         <label for="role">Role</label>
-                        <select id="role" type="text" class="form-control" required placeholder="Role" name="role" value="{{ $user -> role }}">
-                            <option value="" disabled>Select Role</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Program Studi">Program Studi</option>
+                        <select id="role" type="text" class="form-control" required placeholder="Role" name="role">
+                            <option value="" {{ $user -> role === '' ? 'selected' : ''}} disabled>Select Role</option>
+                            <option value="Mahasiswa" {{ $user -> role === 'Mahasiswa' ? 'selected' : ''}}>Mahasiswa</option>
+                            <option value="Admin" {{ $user -> role === 'Admin' ? 'selected' : ''}}>Admin</option>
                         </select>
                     </div>
 
@@ -65,9 +65,9 @@
                     <label for="gender">Jenis Kelamin</label>
                     <div class="form-group">
                         <select id="gender" type="text" class="form-control" placeholder="Gender" name="gender" autofocus>
-                            <option value="" selected disabled>Select Gender</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="" {{ $user -> gender === '' ? 'selected' : ''}} disabled>Select Gender</option>
+                            <option value="Laki-laki" {{ $user -> gender === 'Laki-laki' ? 'selected' : ''}}>Laki-laki</option>
+                            <option value="Perempuan" {{ $user -> gender === 'Perempuan' ? 'selected' : ''}}>Perempuan</option>
                         </select>
                     </div>
 
@@ -77,8 +77,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="profil">Foto Profil</label>
-                        <input id="profil" type="file" class="form-control" placeholder="Foto Profil" name="profil" value="{{ $user -> profil }}">
+                        <label for="profile">Foto Profil</label>
+                        <input id="profile" type="file" class="form-control" placeholder="Foto Profil" name="profile" value="{{ $user -> profile }}">
                     </div>
 
                     <label for="kode_prodi">Prodi</label>
@@ -89,7 +89,7 @@
                             <option selected disabled>Select Prodi</option>
                             {{$prodi = \App\ProgramStudi::all()}}
                             @foreach ($prodi as $prodis)
-                                <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
+                                <option value="{{$prodis->kode_prodi}}" {{ $user -> kode_prodi === $prodis->kode_prodi ? 'selected' : ''}}>{{$prodis->nama_prodi}}</option>
                             @endforeach
                         </select>
                     </div>
