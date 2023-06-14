@@ -108,16 +108,34 @@ class UserManagementController extends Controller
     public function update(Request $request, User $users)
     {
         $validatedData = validator($request->all(), [
+            'id' => ['required', 'string', 'max:50'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
-            'role' => ['required', 'string'],
+            'role' => ['nullable', 'required', 'string'],
+            'alamat' => ['nullable', 'string', 'max:100'],
+            'gender' => ['nullable', 'string', 'max:50'],
+            'tanggal_lahir' => ['nullable', 'date'],
+            'profile' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:10000'],
+            'kode_prodi' => ['required', 'int']
         ])->validate();
 
+        $users->id = $validatedData['id'];
         $users->name = $validatedData['name'];
         $users->email = $validatedData['email'];
-        $users->password = $validatedData['password'];
+        $users->password = Hash::make($validatedData['password']);
         $users->role = $validatedData['role'];
+        $users->alamat = $validatedData['alamat'];
+        if ($request['gender'] == '') {
+            $validatedData['gender'] = null;
+        }
+        $users->gender = $validatedData['gender'];
+        $users->tanggal_lahir = $validatedData['tanggal_lahir'];
+        if ($request['profile'] == '') {
+            $validatedData['profile'] = null;
+        }
+        $users->profile = $validatedData['profile'];
+        $users->kode_prodi = $validatedData['kode_prodi'];
         $users->save();
         return redirect(route('userList'));
     }
