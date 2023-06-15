@@ -31,7 +31,6 @@
                         <th>Semester</th>
                         <th>Beban SKS</th>
                         <th>Deskripsi</th>
-                        <th>Kode Prodi</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -43,7 +42,6 @@
                                 <td>{{$matkul->semester}}</td>
                                 <td>{{$matkul->beban_sks}}</td>
                                 <td>{{$matkul->deskripsi}}</td>
-                                <td>{{$matkul->kode_prodi}}</td>
                                 <td>
                                     <a href="#" class="btn btn-success" role="button">Detail</a>
                                 </td>
@@ -60,4 +58,3 @@
 </div>
 <!-- /.content -->
 @endsection
-@extends('layouts.master')

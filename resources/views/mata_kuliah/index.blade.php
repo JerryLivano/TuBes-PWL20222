@@ -28,7 +28,7 @@
             </div>
         </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                     <tr>
                         <th>Kode Matkul</th>
@@ -37,6 +37,7 @@
                         <th>Beban SKS</th>
                         <th>Deskripsi</th>
                         <th>Nama Prodi</th>
+                        <th>Detail</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -50,6 +51,9 @@
                             <td>{{$matakuliah->deskripsi}}</td>
                             <td>{{$matakuliah->nama_prodi}}</td>
                             <td>
+                                <a href="{{route('mataKuliahDetailList')}}" class="btn btn-success" role="button">Detail</a>
+                            </td>
+                            <td>
                                 <a href="{{route('editMataKuliah', ['kode_matkul' => $matakuliah->kode_matkul]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                 <a href="{{route('deleteMataKuliah',['kode_matkul'=>$matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
                             </td>
@@ -57,9 +61,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
-            <div class="card-header text-right">
-                <a href="{{route('mataKuliahDetailList')}}" class="btn btn-primary" role="button">Mata Kuliah Detail</a>
             </div>
         </div>
         {{-- main content here --}}
