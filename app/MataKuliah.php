@@ -14,6 +14,8 @@ class MataKuliah extends Model
         'kode_matkul',
         'nama_matkul',
         'semester',
+        'beban_sks',
+        'deskripsi',
         'kode_prodi'
     ];
 }

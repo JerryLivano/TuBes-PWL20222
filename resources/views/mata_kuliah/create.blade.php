@@ -41,6 +41,14 @@
                         <input type="text" id="txtSemester" name="txtSemester" class="form-control" required placeholder="Semester">
                     </div>
                     <div class="form-group my-3">
+                        <label for="txtBebanSks">Beban SKS</label>
+                        <input type="int" id="txtBebanSks" name="txtBebanSks" class="form-control" required placeholder="Beban SKS">
+                    </div>
+                    <div class="form-group my-3">
+                        <label for="txtDeskripsi">Deskripsi</label>
+                        <input type="text" id="txtDeskripsi" name="txtDeskripsi" class="form-control" required placeholder="Deskripsi">
+                    </div>
+                    <div class="form-group my-3">
                         <label for="txtKodeProdi">Program Studi</label>
                         <select name="txtKodeProdi" class="form-control">
                             <option disabled selected>Select Program Studi</option><!--selected by default-->
