@@ -19,7 +19,10 @@ class MataKuliahController extends Controller
     public function index()
     {
         if(Auth::user()->role =='Admin'){
-            $data = MataKuliah::all();
+            $data = DB::table('mata_kuliah')
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi', 'program_studi.nama_prodi')
+            ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->get();
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
@@ -61,12 +64,16 @@ class MataKuliahController extends Controller
             'txtKodeMatkul' => 'required|string|max:50',
             'txtName' => 'required|string|max:100',
             'txtSemester' => 'required|string|max:50',
+            'txtBebanSks' => 'required|integer|max:10',
+            'txtDeskripsi' => 'required|string|max:100',
             'txtKodeProdi' => 'required|int'
         ]) -> validate();
         $matkul = new MataKuliah();
         $matkul -> kode_matkul = $validatedData['txtKodeMatkul'];
         $matkul -> nama_matkul = $validatedData['txtName'];
         $matkul -> semester = $validatedData['txtSemester'];
+        $matkul -> beban_sks = $validatedData['txtBebanSks'];
+        $matkul -> deskripsi = $validatedData['txtDeskripsi'];
         $matkul -> kode_prodi = $validatedData['txtKodeProdi'];
         $matkul -> save();
         return redirect(route('mataKuliahList'));

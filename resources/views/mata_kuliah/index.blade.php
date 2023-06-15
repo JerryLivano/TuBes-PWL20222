@@ -34,7 +34,9 @@
                         <th>Kode Matkul</th>
                         <th>Nama Matkul</th>
                         <th>Semester</th>
-                        <th>Kode Prodi</th>
+                        <th>Beban SKS</th>
+                        <th>Deskripsi</th>
+                        <th>Nama Prodi</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -44,7 +46,9 @@
                             <td>{{$matakuliah->kode_matkul}}</td>
                             <td>{{$matakuliah->nama_matkul}}</td>
                             <td>{{$matakuliah->semester}}</td>
-                            <td>{{$matakuliah->kode_prodi}}</td>
+                            <td>{{$matakuliah->beban_sks}}</td>
+                            <td>{{$matakuliah->deskripsi}}</td>
+                            <td>{{$matakuliah->nama_prodi}}</td>
                             <td>
                                 <a href="{{route('editMataKuliah', ['kode_matkul' => $matakuliah->kode_matkul]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                 <a href="{{route('deleteMataKuliah',['kode_matkul'=>$matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>

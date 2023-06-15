@@ -37,13 +37,17 @@
                         <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="Nama Mata Kuliah" value="{{ $mataKuliah->nama_matkul }}">
                         <label for="txtSemester">Semester</label>
                         <input type="text" id="txtSemester" name="txtSemester" class="form-control" required placeholder="Semester" value="{{ $mataKuliah->semester }}">
-                        <label for="txtKodeProdi">Program Studi</label>
-                        <select name="txtKodeProdi" class="form-control">
-                            <option>Select Program Studi</option><!--selected by default-->
+                        <label for="txtBebanSks">Beban SKS</label>
+                        <input type="int" id="txtBebanSks" name="txtBebanSks" class="form-control" required placeholder="Beban SKS" value="{{ $mataKuliah->beban_sks }}">
+                        <label for="txtDeskripsi">Deskripsi</label>
+                        <input type="text" id="txtDeskripsi" name="txtDeskripsi" class="form-control" required placeholder="Deskripsi" value="{{ $mataKuliah->deskripsi }}">
+                        <!-- <label for="txtKodeProdi">Program Studi</label> -->
+                        <!-- <select name="txtKodeProdi" class="form-control">
+                            <option>Select Program Studi</option>
                             @foreach ($prodi as $prodis)
                                 <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
                             @endforeach
-                       </select>
+                       </select> -->
                     </div>
                     <div class="text-right">
                         <a href="{{ route('mataKuliahList') }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
