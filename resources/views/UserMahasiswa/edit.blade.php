@@ -25,7 +25,7 @@
 
         <div class="card">
             <div class="card-body p-2">
-                <form action="{{ route('updateUser', ['id'=>$UserMahasiswa -> id]) }}" method="post">
+                <form action="{{ route('updateProfile', ['id'=>$UserMahasiswa -> id]) }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="txtId">NRP</label>
