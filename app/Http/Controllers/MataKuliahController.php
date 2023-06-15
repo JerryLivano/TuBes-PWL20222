@@ -65,7 +65,7 @@ class MataKuliahController extends Controller
             'txtName' => 'required|string|max:100',
             'txtSemester' => 'required|string|max:50',
             'txtBebanSks' => 'required|integer|max:10',
-            'txtDeskripsi' => 'required|string|max:100',
+            'txtDeskripsi' => 'nullable|string|max:100',
             'txtKodeProdi' => 'required|int'
         ]) -> validate();
         $matkul = new MataKuliah();
@@ -117,12 +117,14 @@ class MataKuliahController extends Controller
             'txtKodeMatkul' => 'required|string|max:50',
             'txtName' => 'required|string|max:100',
             'txtSemester' => 'required|string|max:50',
-            'txtKodeProdi' => 'required|int'
+            'txtBebanSks' => 'required|integer|max:10',
+            'txtDeskripsi' => 'nullable|string|max:100'
         ])->validate();
         $mataKuliah -> kode_matkul = $validatedData['txtKodeMatkul'];
         $mataKuliah -> nama_matkul = $validatedData['txtName'];
         $mataKuliah -> semester = $validatedData['txtSemester'];
-        $mataKuliah -> kode_prodi = $validatedData['txtKodeProdi'];
+        $mataKuliah -> beban_sks = $validatedData['txtBebanSks'];
+        $mataKuliah -> deskripsi = $validatedData['txtDeskripsi'];
         $mataKuliah -> save();
         return redirect(route('mataKuliahList'));
     }
