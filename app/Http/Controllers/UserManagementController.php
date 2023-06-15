@@ -20,6 +20,7 @@ class UserManagementController extends Controller
         $data = DB::table('users')
             ->select('users.id', 'users.name', 'users.email', 'users.password', 'users.role', 'users.alamat', 'users.gender', 'users.tanggal_lahir', 'users.profile', 'program_studi.nama_prodi')
             ->join('program_studi', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->where('users.role', 'Mahasiswa')
             ->get();
         return view('users.index', [
             'users' => $data,

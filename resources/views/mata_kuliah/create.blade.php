@@ -48,15 +48,6 @@
                         <label for="txtDeskripsi">Deskripsi</label>
                         <input type="text" id="txtDeskripsi" name="txtDeskripsi" class="form-control" required placeholder="Deskripsi">
                     </div>
-                    <div class="form-group my-3">
-                        <label for="txtKodeProdi">Program Studi</label>
-                        <select name="txtKodeProdi" class="form-control">
-                            <option disabled selected>Select Program Studi</option><!--selected by default-->
-                            @foreach ($prodi as $prodis)
-                                <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
-                            @endforeach
-                       </select>
-                    </div>
                     <div class="text-right">
                         <a href="{{ route('mataKuliahList') }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>

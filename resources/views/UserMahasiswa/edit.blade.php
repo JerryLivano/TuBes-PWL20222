@@ -53,7 +53,7 @@
                     </div>
                    
                     <div class="text-right">
-                        {{-- <a href="{{ route('updateUser') }}" class="btn btn-outline-secondary mr-2" role="button">Edit</a> --}}
+                        {{-- <a href="{{ route('updateUser') }}" class="btn btn-outline-secondary mr-2" role="button"> Edit</a> --}}
                         <a href="{{ route('userList')}}" class="btn btn-danger" role="button" style="cursor: pointer;">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
