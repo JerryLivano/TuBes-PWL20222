@@ -30,6 +30,7 @@
                 <table class="table table-hover mb-0 text-center">
                     <thead>
                         <tr>
+                            <th>Foto Profile</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -37,7 +38,6 @@
                             <th>Alamat</th>
                             <th>Gender</th>
                             <th>Tanggal Lahir</th>
-                            <th>Foto Profile</th>
                             <th>Prodi</th>
                             <th>Action</th>
                         </tr>
@@ -45,6 +45,7 @@
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
+                            <td>{{$user->profile}}</td>
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
@@ -52,7 +53,6 @@
                             <td>{{$user->alamat}}</td>
                             <td>{{$user->gender}}</td>
                             <td>{{$user->tanggal_lahir}}</td>
-                            <td>{{$user->profile}}</td>
                             <td>{{$user->nama_prodi}}</td>
                             <td>
                                 <a href="{{ route('EditUserList', ['id' => $user->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
