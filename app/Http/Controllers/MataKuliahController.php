@@ -20,20 +20,22 @@ class MataKuliahController extends Controller
     {
         if(Auth::user()->role =='Admin'){
             $data = DB::table('mata_kuliah')
-            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi', 'program_studi.nama_prodi')
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')
             ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
-            // ->where('program_studi.kode_prodi', Auth::user()->kode_prodi)
+            ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->where('users.id', Auth::user()->id)
+            ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
         } elseif (Auth::user()->role =='Mahasiswa'){
-            // $data = MataKuliah::select('SELECT mata_kuliah.kode_matkul, mata_kuliah.nama_matkul, mata_kuliah.semester, mata_kuliah.beban_sks, mata_kuliah.deskripsi, mata_kuliah.kode_prodi FROM mata_kuliah INNER JOIN program_studi ON mata_kuliah.kode_prodi = program_studi.kode_prodi INNER JOIN users ON users.kode_prodi = program_studi.kode_prodi WHERE users.id = "2172000"');
             $data = DB::table('mata_kuliah')
             ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')
             ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
             ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
             ->where('users.id', Auth::user()->id)
+            ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
@@ -67,7 +69,6 @@ class MataKuliahController extends Controller
             'txtSemester' => 'required|string|max:50',
             'txtBebanSks' => 'required|integer|max:10',
             'txtDeskripsi' => 'nullable|string|max:100',
-            'txtKodeProdi' => 'required|int'
         ]) -> validate();
         $matkul = new MataKuliah();
         $matkul -> kode_matkul = $validatedData['txtKodeMatkul'];
@@ -75,7 +76,7 @@ class MataKuliahController extends Controller
         $matkul -> semester = $validatedData['txtSemester'];
         $matkul -> beban_sks = $validatedData['txtBebanSks'];
         $matkul -> deskripsi = $validatedData['txtDeskripsi'];
-        $matkul -> kode_prodi = $validatedData['txtKodeProdi'];
+        $matkul -> kode_prodi = Auth::user()->kode_prodi;
         $matkul -> save();
         return redirect(route('mataKuliahList'), compact('prodi'));
     }

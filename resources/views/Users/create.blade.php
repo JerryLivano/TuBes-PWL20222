@@ -125,7 +125,7 @@
 
                     <label for="profile">Foto Profil</label>
                     <div class="input-group mb-3">
-                        <input id="profile" type="file" class="form-control @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile" value="{{ old('profile') }}" autofocus>
+                        <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>
                     </div>
                     @error('profile')
                     <span class="invalid-feedback" role="alert">
