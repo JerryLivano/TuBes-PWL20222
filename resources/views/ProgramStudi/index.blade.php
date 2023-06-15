@@ -23,7 +23,7 @@
 <div class="content">
 	<div class="container-fluid">
         <div class="card">
-        <div class="card-header text-right">
+            <div class="card-header text-right">
                 <a href="{{ route('createProgramStudi') }}" class="btn btn-primary" role="button">Input Program Studi</a>
             </div>
             <div class="card-body p-0">
