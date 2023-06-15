@@ -91,4 +91,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/MataKuliahMahasiswa',[MataKuliahController::class,'index'])->name('mataKuliahMahasiswaList');
 
     Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
+
+    Route::get('/DKBS', [])
 });
