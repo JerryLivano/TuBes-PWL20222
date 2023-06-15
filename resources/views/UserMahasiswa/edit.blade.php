@@ -64,4 +64,3 @@
 </div>
 <!-- /.content -->
 @endsection
-@extends('layouts.master')
