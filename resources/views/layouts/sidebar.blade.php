@@ -15,7 +15,11 @@
                 <img src="{{asset('img/user-photo-default.png')}}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
+                @if(Auth::user()->role =='Admin')
                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                @else
+                <a href="{{route('userList')}}" class="d-block">{{Auth::user()->name}}</a>
+                @endif
             </div>
         </div>
         @endauth

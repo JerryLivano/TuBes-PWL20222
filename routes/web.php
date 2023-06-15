@@ -22,7 +22,7 @@ use App\Ruangan;
 use App\Http\Controllers\MataKuliahDetailController;
 use App\Http\Controllers\PerwalianController; 
 use App\Http\Controllers\RuanganController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -91,4 +91,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/MataKuliahMahasiswa',[MataKuliahController::class,'index'])->name('mataKuliahMahasiswaList');
 
     Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
+
+    Route::get('/UserMahasiswa',[UserController::class,'index'])->name('userList');
+    Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateUser');
+    Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editUser');
 });
