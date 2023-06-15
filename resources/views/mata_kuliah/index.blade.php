@@ -58,6 +58,15 @@
                     @endforeach
                     </tbody>
                 </table>
+                <form action="{{ route('storeMataKuliah') }}" method="post">
+                <label for="txtKodeProdi">Program Studi</label>
+                        <select name="txtKodeProdi" class="form-control">
+                            <option disabled selected>Select Program Studi</option><!--selected by default-->
+                            @foreach ($prodi as $prodis)
+                                <option value="{{$mata_kuliah->kode_prodi}}">{{$mata_kuliah->nama_prodi}}</option>
+                            @endforeach
+                       </select>
+                </form>
             </div>
         </div>
         {{-- main content here --}}

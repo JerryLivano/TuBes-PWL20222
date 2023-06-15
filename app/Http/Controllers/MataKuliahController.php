@@ -78,7 +78,7 @@ class MataKuliahController extends Controller
         $matkul -> deskripsi = $validatedData['txtDeskripsi'];
         $matkul -> kode_prodi = Auth::user()->kode_prodi;
         $matkul -> save();
-        return redirect(route('mataKuliahList'));
+        return redirect(route('mataKuliahList'), compact('prodi'));
     }
 
     /**
