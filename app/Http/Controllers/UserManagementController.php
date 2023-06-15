@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ProgramStudi;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +21,7 @@ class UserManagementController extends Controller
         $data = DB::table('users')
             ->select('users.id', 'users.name', 'users.email', 'users.password', 'users.role', 'users.alamat', 'users.gender', 'users.tanggal_lahir', 'users.profile', 'program_studi.nama_prodi')
             ->join('program_studi', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->where('program_studi.kode_prodi', Auth::user()->kode_prodi)
             ->get();
         return view('users.index', [
             'users' => $data,
