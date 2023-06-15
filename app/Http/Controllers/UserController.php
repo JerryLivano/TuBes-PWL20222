@@ -94,7 +94,7 @@ class UserController extends Controller
         $user -> gender = $validatedData['txtGender'];
         $user -> tanggal_lahir = $validatedData['txtLahir'];
         $user -> save();
-        return redirect(route('userList'));
+        return redirect(route('profile'));
     }
 
     /**

@@ -18,7 +18,7 @@
                 @if(Auth::user()->role =='Admin')
                 <a href="#" class="d-block">{{Auth::user()->name}}</a>
                 @else
-                <a href="{{route('userList')}}" class="d-block">{{Auth::user()->name}}</a>
+                <a href="{{route('profile')}}" class="d-block">{{Auth::user()->name}}</a>
                 @endif
             </div>
         </div>

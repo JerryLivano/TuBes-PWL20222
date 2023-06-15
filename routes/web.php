@@ -92,7 +92,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
 
-    Route::get('/UserMahasiswa',[UserController::class,'index'])->name('userList');
-    Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateUser');
-    Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editUser');
+    Route::get('/UserMahasiswa',[UserController::class,'index'])->name('profile');
+    Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateProfile');
+    Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
 });
