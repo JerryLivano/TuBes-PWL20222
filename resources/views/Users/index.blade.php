@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">User Management</h1>
+                <h1 class="m-0 text-dark">Mahasiswa</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">User Management</li>
+                    <li class="breadcrumb-item active">Mahasiswa</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,21 +24,19 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header text-right">
-                <a href="{{ route('createUserList') }}" class="btn btn-primary" role="button">Add New User</a>
+                <a href="{{ route('createUserList') }}" class="btn btn-primary" role="button">Tambah Mahasiswa</a>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0 text-center">
                     <thead>
                         <tr>
                             <th>Foto Profile</th>
-                            <th>ID</th>
+                            <th>NRP</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
                             <th>Alamat</th>
                             <th>Gender</th>
                             <th>Tanggal Lahir</th>
-                            <th>Prodi</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,11 +47,9 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->role}}</td>
                             <td>{{$user->alamat}}</td>
                             <td>{{$user->gender}}</td>
                             <td>{{$user->tanggal_lahir}}</td>
-                            <td>{{$user->nama_prodi}}</td>
                             <td>
                                 <a href="{{ route('EditUserList', ['id' => $user->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                 <a href="{{ route('deleteUser',['id'=>$user->id])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>

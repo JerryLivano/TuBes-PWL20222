@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('mahasiswaList')}}" class="nav-link">
+                    <a href="{{route('userList')}}" class="nav-link">
                         <i class="nav-icon fa fa-user-circle"></i>
                         <p>Mahasiswa</p>
                     </a>
@@ -71,12 +71,7 @@
                         <p>Ruangan</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{route('userList')}}" class="nav-link">
-                        <i class="nav-icon fa fa-address-card"></i>
-                        <p>User Management</p>
-                    </a>
-                </li>
+                
                 @elseif (Auth::user()->role =='Mahasiswa')
                 <li class="nav-item">
                     <a href="{{route('dashboard')}}" class="nav-link">
