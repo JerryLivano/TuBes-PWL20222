@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\DKBSController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaMemilikiMatkulController;
 use App\Http\Controllers\ProgramStudiController;
@@ -95,4 +96,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/UserMahasiswa',[UserController::class,'index'])->name('profile');
     Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateProfile');
     Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
+
+    Route::get('/dkbs',[DKBSController::class,'index'])->name('dkbsList');
 });
