@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('dkbs')}}" class="nav-link">
+                    <a href="{{route('dkbsList')}}" class="nav-link">
                         <i class="nav-icon fa fa-tasks"></i>
                         <p>DKBS</p>
                     </a>
