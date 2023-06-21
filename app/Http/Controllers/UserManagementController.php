@@ -57,7 +57,7 @@ class UserManagementController extends Controller
             'address' => ['nullable', 'string', 'max:100'],
             'gender' => ['nullable', 'string', 'max:50'],
             'tanggal_lahir' => ['nullable', 'date'],
-            'profile' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:10000']
+            'profile' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048']
         ])->validate();
 
         $users = new User();
@@ -72,7 +72,8 @@ class UserManagementController extends Controller
         }
         $users->gender = $validatedData['gender'];
         $users->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $users->profile = $validatedData['profile'];
+        $profileName = $validatedData['id'] . "." . $validatedData['profile']->getClientOriginalExtension();
+        $users->profile = $profileName;
         $users->kode_prodi = Auth::user()->kode_prodi;
         $users->save();
         return redirect(route('userList'));

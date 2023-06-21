@@ -42,8 +42,8 @@
                             <td>{{$ruangan -> kode_ruang}}</td>
                             <td>{{$ruangan -> nama_ruang}}</td>
                             <td>
-                                <a href="{{ route('editRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-warning" role="button" style="cursor: pointer;" class="btn btn-warning" role="button">Edit</a>
-                                <a href="{{ route('deleteRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-danger" role="button">Delete</a>
+                                <a href="{{ route('editRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
+                                <a href="{{ route('deleteRuanganList', ['kode_ruang' => $ruangan->kode_ruang]) }}" class="btn btn-danger" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
