@@ -32,7 +32,7 @@
                         <tr>
                             <th>Foto Profile</th>
                             <th>NRP</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Email</th>
                             <th>Alamat</th>
                             <th>Gender</th>
@@ -43,7 +43,13 @@
                     <tbody>
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{$user->profile}}</td>
+                            <td>
+                                @if($user->profile == NULL)
+                                <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="100" height="100">
+                                @else
+                                <img src="{{asset('img/' . $user->profile)}}" class="img-circle" alt="User Image" width="100" height="100">
+                                @endif
+                            </td>
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
