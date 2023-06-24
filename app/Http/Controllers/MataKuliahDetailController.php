@@ -23,7 +23,7 @@ class MataKuliahDetailController extends Controller
             ]);
         }elseif(Auth::user()->role =='Mahasiswa'){
             $data = MataKuliahDetail::all();
-            return view('MataKuliahMahasiswa.index',[
+            return view('PerwalianMahasiswa.index',[
                 'MataKuliahMahasiswas'=>$data
             ]);
         }

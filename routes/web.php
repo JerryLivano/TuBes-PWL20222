@@ -97,5 +97,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateProfile');
     Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
 
+    Route::get('/PerwalianMahasiswa',[MataKuliahDetailController::class,'index'])->name('perwalianMahasiswa');
+  
     Route::get('/dkbs',[DKBSController::class,'index'])->name('dkbsList');
+
 });

@@ -95,6 +95,12 @@
                         <p>Mata Kuliah</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('perwalianMahasiswa')}}" class="nav-link">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>Perwalian</p>
+                    </a>
+                </li>
                 @endif
                 <li class="nav-item">
                     <form id="logout-form" action="{{route('logout')}}" method="post">
