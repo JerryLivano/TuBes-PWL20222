@@ -37,6 +37,7 @@ class MataKuliahController extends Controller
             ->where('users.id', Auth::user()->id)
             ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
+            
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
             ]);
