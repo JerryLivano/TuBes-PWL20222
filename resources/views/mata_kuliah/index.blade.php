@@ -52,21 +52,12 @@
                             </td>
                             <td>
                                 <a href="{{route('editMataKuliah', ['kode_matkul' => $matakuliah->kode_matkul]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
-                                <a href="{{route('deleteMataKuliah',['kode_matkul'=>$matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                                <a href="{{route('deleteMataKuliah',['kode_matkul'=> $matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                <form action="{{ route('storeMataKuliah') }}" method="post">
-                <label for="txtKodeProdi">Program Studi</label>
-                        <select name="txtKodeProdi" class="form-control">
-                            <option disabled selected>Select Program Studi</option><!--selected by default-->
-                            @foreach ($prodi as $prodis)
-                                <option value="{{$mata_kuliah->kode_prodi}}">{{$mata_kuliah->nama_prodi}}</option>
-                            @endforeach
-                       </select>
-                </form>
             </div>
         </div>
         {{-- main content here --}}
