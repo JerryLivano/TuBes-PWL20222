@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Perwalian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PerwalianController extends Controller
 {
@@ -99,5 +100,13 @@ class PerwalianController extends Controller
     {
         $perwalian->delete();
         return redirect(route('perwalianList'));
+    }
+
+    public function getAllSks()
+    {
+        $purchases = DB::table('transactions')
+        ->join('categories', 'transactions.category_id', '=', 'categories.id')
+        ->where('categories.kind', '=', 1)
+        ->sum('transactions.amount');
     }
 }
