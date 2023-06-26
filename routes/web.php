@@ -21,7 +21,7 @@ use App\Mahasiswa;
 use App\ProgramStudi;
 use App\Ruangan;
 use App\Http\Controllers\MataKuliahDetailController;
-use App\Http\Controllers\PerwalianController; 
+use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
 
@@ -87,18 +87,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/perwalian/delete/{perwalian}', [PerwalianController::class, 'destroy'])->name('deletePerwalian');
     Route::post('/perwalian/edit/{perwalian}', [PerwalianController::class, 'update'])->name('updatePerwalian');
     Route::get('/perwalian/edit/{perwalian}', [PerwalianController::class, 'edit'])->name('editPerwalian');
+    Route::get('/perwalian/deactive/', [PerwalianController::class, 'deactive'])->name('deactive');
+    Route::get('/perwalian/activate/{perwalian}', [PerwalianController::class, 'activate'])->name('activate');
 
-    
-    Route::get('/MataKuliahMahasiswa',[MataKuliahController::class,'index'])->name('mataKuliahMahasiswaList');
 
-    Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
+    Route::get('/MataKuliahMahasiswa', [MataKuliahController::class, 'index'])->name('mataKuliahMahasiswaList');
 
-    Route::get('/UserMahasiswa',[UserController::class,'index'])->name('profile');
+    Route::get('/MataKuliahMahasiswaDetail', [MataKuliahDetailController::class, 'index'])->name('mataKuliahMahasiswaDetailList');
+
+    Route::get('/UserMahasiswa', [UserController::class, 'index'])->name('profile');
     Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateProfile');
     Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
 
-    Route::get('/PerwalianMahasiswa',[MataKuliahDetailController::class,'index'])->name('perwalianMahasiswa');
-  
-    Route::get('/dkbs',[DKBSController::class,'index'])->name('dkbsList');
+    Route::get('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
 
+    Route::get('/dkbs', [DKBSController::class, 'index'])->name('dkbsList');
 });
