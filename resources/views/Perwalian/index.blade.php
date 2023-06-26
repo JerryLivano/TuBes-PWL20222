@@ -32,17 +32,28 @@
                         <tr>
                             <th>ID</th>
                             <th>Semester</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($perwalian as $perwalians)
-                            <tr>
+                        <tr>
                                 <td>{{$perwalians->id}}</td>
                                 <td>{{$perwalians->semester}}</td>
                                 <td>
+                                    @if($perwalians->status == 1)
+                                    {{"Active"}}
+                                    @endif
+                                </td>
+                                <td>
                                     <a href="{{route('editPerwalian', ['id' => $perwalians->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                     <a href="{{route('deletePerwalian',['id'=>$perwalians->id])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                                    @if($perwalians->status == 1)
+                                    <a href="{{route('deactive')}}" class="btn btn-outline-success" role="button" style="cursor: pointer;"> Deactive </a>
+                                    @else
+                                    <a href="{{route('activate',['id'=>$perwalians->id])}}" class="btn btn-success" role="button" style="cursor: pointer;"> Activate </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

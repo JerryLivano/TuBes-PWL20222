@@ -12,6 +12,7 @@ class Perwalian extends Model
 
     protected $fillable = [
         'id',
-        'semester'
+        'semester',
+        'status'
     ];
 }
