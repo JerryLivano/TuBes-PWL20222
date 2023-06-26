@@ -30,7 +30,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="id">ID</label>
+                        <label for="id">NRP</label>
                         <input id="id" type="text" class="form-control" required placeholder="ID" name="id" readonly value="{{ $user -> id }}">
                     </div>
                     <div class="form-group">
@@ -77,8 +77,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="profile">Foto Profil</label>
-                        <input id="profile" type="file" class="form-control" placeholder="Foto Profil" name="profile" value="{{ $user -> profile }}">
+                        <label for="profile">Foto Profil</label><br>
+                        <input id="profile" type="file" class="" name="profile" value="{{ $user -> profile }}">
                     </div>
 
                     <label for="kode_prodi">Prodi</label>

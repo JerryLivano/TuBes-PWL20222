@@ -19,13 +19,6 @@ class MataKuliahController extends Controller
     public function index()
     {
         if(Auth::user()->role =='Admin'){
-            $data = DB::table('mata_kuliah')
-            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')
-            ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
-            ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
-            ->where('users.id', Auth::user()->id)
-            ->orderBy('mata_kuliah.semester', 'ASC')
-            ->get();
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
@@ -37,12 +30,11 @@ class MataKuliahController extends Controller
             ->where('users.id', Auth::user()->id)
             ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
-            
+  
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
             ]);
         }
-       
     }
 
     /**
