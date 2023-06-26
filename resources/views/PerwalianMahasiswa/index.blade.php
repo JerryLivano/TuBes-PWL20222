@@ -26,29 +26,34 @@
             <table class="table table-hover mb-0">
                 <thead>
                 <tr>
+                    <th>Kelas</th>
                     <th>Tipe</th>
                     <th>Kuota</th>
                     <th>Beban SKS</th>
                     <th>Hari</th>
-                    <th>Jam</th>
-                    <th>Kode Matkul</th>
+                    <th>Jam Awal</th>
+                    <th>Jam Akhir</th>
+                    <th>Nama Matkul</th>
                     <th>Kode Ruang</th>
+                    <th>Semester</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($MataKuliahMahasiswas as $matakuliahdetail)
                     <tr>
+                        <td>{{$matakuliahdetail -> kelas}}</td>
                         <td>{{$matakuliahdetail -> tipe}}</td>
                         <td>{{$matakuliahdetail -> kuota}}</td>
                         <td>{{$matakuliahdetail -> beban_sks}}</td>
                         <td>{{$matakuliahdetail -> hari}}</td>
-                        <td>{{$matakuliahdetail -> jam}}</td>
-                        <td>{{$matakuliahdetail -> kode_matkul}}</td>
+                        <td>{{$matakuliahdetail -> jam_awal}}</td>
+                        <td>{{$matakuliahdetail -> jam_akhir}}</td>
+                        <td>{{$matakuliahdetail -> nama_matkul}}</td>
                         <td>{{$matakuliahdetail -> kode_ruang}}</td>
+                        <td>{{$matakuliahdetail -> semester}}</td>
                         <td>
-                            <a href="#" class="btn btn-warning" role="button">Edit</a>
-                            <a href="#" class="btn btn-danger" role="button">Delete</a>
+                            <input type="checkbox">
                         </td>
                     </tr>
                 @endforeach
