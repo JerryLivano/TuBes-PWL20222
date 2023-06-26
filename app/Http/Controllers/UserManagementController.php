@@ -174,8 +174,18 @@ class UserManagementController extends Controller
 
         $users->password = Hash::make($validatedData['password']);
         $users->save();
-        return view('users/edit', [
-            'user' => $users
-        ]);
+        if (Auth::user()->role == 'Admin') {
+            return view('users/edit', [
+                'user' => $users
+            ]);
+        } else {
+            $data = DB::table('users')
+                ->select('*')
+                ->where('users.id', Auth::user()->id)
+                ->get();
+            return view('UserMahasiswa.index', [
+                'UserMahasiswa' => $data
+            ]);
+        };
     }
 }

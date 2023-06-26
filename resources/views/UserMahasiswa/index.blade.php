@@ -61,6 +61,7 @@
                         </div>
                     
                         <div class="text-right">
+                            <a href="{{ route('EditPasswordUserList', ['id'=>$UserMahasiswa[0]->id]) }}" class="btn btn-info " role="button" style="cursor: pointer;"> <i class="nav-icon fa fa-wrench"></i> Change Password</a>
                             <a href="{{ route('editProfile',  ['id' => $UserMahasiswa[0]->id])}}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i> Edit</a>
                         </div>
                     </div>
