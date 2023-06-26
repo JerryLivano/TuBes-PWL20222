@@ -34,6 +34,8 @@
                             <th>Semester</th>
                             <th>Status</th>
                             <th>Action</th>
+                            <th>DKBS</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,10 +51,15 @@
                                 <td>
                                     <a href="{{route('editPerwalian', ['id' => $perwalians->id]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
                                     <a href="{{route('deletePerwalian',['id'=>$perwalians->id])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{route('dkbsAdminList',['id'=>$perwalians->id])}}" class="btn btn-info" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-tasks"></i> List</a>
+                                </td>
+                                <td>
                                     @if($perwalians->status == 1)
-                                    <a href="{{route('deactive')}}" class="btn btn-outline-success" role="button" style="cursor: pointer;"> Deactive </a>
+                                    <a href="{{route('deactive')}}" style="cursor: pointer; font-size:24px; color:green;"><i class="nav-icon fa fa-toggle-on"></i></a>
                                     @else
-                                    <a href="{{route('activate',['id'=>$perwalians->id])}}" class="btn btn-success" role="button" style="cursor: pointer;"> Activate </a>
+                                    <a href="{{route('activate',['id'=>$perwalians->id])}}" style="cursor: pointer; font-size:24px; color:green;"><i class="nav-icon fa fa-toggle-off"></i></a>
                                     @endif
                                 </td>
                             </tr>
