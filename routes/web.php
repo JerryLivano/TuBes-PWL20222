@@ -24,7 +24,7 @@ use App\Http\Controllers\MataKuliahDetailController;
 use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
-
+use Illuminate\Http\Request;
 Route::get('/', function () {
     return redirect(route('login'));
 });
@@ -102,6 +102,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
 
     Route::get('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
-
+  
     Route::get('/dkbs', [DKBSController::class, 'index'])->name('dkbsList');
+
 });
+
+

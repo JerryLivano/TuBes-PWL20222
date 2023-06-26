@@ -23,13 +23,39 @@ class MataKuliahDetailController extends Controller
                 'matakuliahdetails' => $data
             ]);
         }elseif(Auth::user()->role =='Mahasiswa'){
-            $data = DB::table('matkul_detail')
+            $matkulSenin = DB::table('matkul_detail')
             ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
             ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->where('matkul_detail.hari','Senin')
             ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
+            $matkulSelasa = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->where('matkul_detail.hari','Selasa')
+            ->orderBy('mata_kuliah.semester', 'ASC')
+            ->get();
+            $matkulRabu = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->where('matkul_detail.hari','Rabu')
+            ->orderBy('mata_kuliah.semester', 'ASC')
+            ->get();
+            $matkulKamis = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->where('matkul_detail.hari','Kamis')
+            ->orderBy('mata_kuliah.semester', 'ASC')
+            ->get();
+            $matkulJumat = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->where('matkul_detail.hari','Jumat')
+            ->orderBy('mata_kuliah.semester', 'ASC')
+            ->get();
+
             return view('PerwalianMahasiswa.index',[
-                'MataKuliahMahasiswas'=>$data
+                'matakuliahdetails' => [$matkulSenin,$matkulSelasa,$matkulRabu,$matkulKamis,$matkulJumat]
             ]);
         }
     }
