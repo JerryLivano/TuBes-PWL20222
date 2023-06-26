@@ -26,20 +26,18 @@
             <div class="card-header text-right">
                     <a href="{{ route('createMataKuliah') }}" class="btn btn-primary" role="button">Input Mata Kuliah</a>
             </div>
-        </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0 text-center">
                     <thead>
-                    <tr>
-                        <th>Kode Matkul</th>
-                        <th>Nama Matkul</th>
-                        <th>Semester</th>
-                        <th>Beban SKS</th>
-                        <th>Deskripsi</th>
-                        <th>Nama Prodi</th>
-                        <th>Detail</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Kode Matkul</th>
+                            <th>Nama Matkul</th>
+                            <th>Semester</th>
+                            <th>Beban SKS</th>
+                            <th>Deskripsi</th>
+                            <th>Detail</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach($mata_kuliahs as $matakuliah)
@@ -49,13 +47,12 @@
                             <td>{{$matakuliah->semester}}</td>
                             <td>{{$matakuliah->beban_sks}}</td>
                             <td>{{$matakuliah->deskripsi}}</td>
-                            <td>{{$matakuliah->nama_prodi}}</td>
                             <td>
                                 <a href="{{route('mataKuliahDetailList')}}" class="btn btn-success" role="button">Detail</a>
                             </td>
                             <td>
                                 <a href="{{route('editMataKuliah', ['kode_matkul' => $matakuliah->kode_matkul]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
-                                <a href="{{route('deleteMataKuliah',['kode_matkul'=>$matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                                <a href="{{route('deleteMataKuliah',['kode_matkul'=> $matakuliah->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

@@ -75,14 +75,6 @@
                         <input id="password-confirm" type="password" class="form-control" placeholder="Retype password" name="password_confirmation" required autocomplete="new-password">
                     </div>
 
-                    <label for="role">Role</label>
-                    <div class="input-group mb-3">
-                        <select id="role" type="text" class="form-control @error('role') is-invalid @enderror" placeholder="Role" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
-                            <option selected disabled>Select Role</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                    </div>
                     @error('role')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -125,7 +117,7 @@
 
                     <label for="profile">Foto Profil</label>
                     <div class="input-group mb-3">
-                        <input id="profile" type="file" class="form-control @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile" value="{{ old('profile') }}" autofocus>
+                        <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>
                     </div>
                     @error('profile')
                     <span class="invalid-feedback" role="alert">
@@ -133,18 +125,6 @@
                     </span>
                     @enderror
 
-                    <label for="kode_prodi">Prodi</label>
-                    <div class="input-group mb-3">
-                        <select id="kode_prodi" type="text" class="form-control @error('kode_prodi') is-invalid @enderror"
-                            placeholder="Kode Prodi" name="kode_prodi" value="{{ old('kode_prodi') }}" required autocomplete="kode_prodi"
-                            autofocus>
-                            <option selected disabled>Select Prodi</option>
-                            {{$prodi = \App\ProgramStudi::all()}}
-                            @foreach ($prodi as $prodis)
-                                <option value="{{$prodis->kode_prodi}}">{{$prodis->nama_prodi}}</option>
-                            @endforeach
-                        </select>
-                    </div>
                     @error('kode_prodi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

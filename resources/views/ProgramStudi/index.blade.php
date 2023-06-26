@@ -23,7 +23,7 @@
 <div class="content">
 	<div class="container-fluid">
         <div class="card">
-        <div class="card-header text-right">
+            <div class="card-header text-right">
                 <a href="{{ route('createProgramStudi') }}" class="btn btn-primary" role="button">Input Program Studi</a>
             </div>
             <div class="card-body p-0">
@@ -41,8 +41,8 @@
                                 <td>{{$programstudi->kode_prodi}}</td>
                                 <td>{{$programstudi->nama_prodi}}</td>
                                 <td>
-                                    <a href="{{ route('EditProgramStudiList',  ['kode_prodi' => $programstudi->kode_prodi])}}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
-                                    <a href="{{route('deleteProgramStudi',['kode_prodi'=>$programstudi->kode_prodi])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                                    <a href="{{ route('EditProgramStudiList', ['kode_prodi' => $programstudi->kode_prodi])}}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>
+                                    <a href="{{route('deleteProgramStudi', ['kode_prodi'=>$programstudi->kode_prodi])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach

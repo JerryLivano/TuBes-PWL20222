@@ -1,9 +1,16 @@
 <!-- Main Sidebar Container -->
+<style>
+    aside {
+        overflow-x: hidden;
+        position: -webkit-sticky;
+        position: sticky;
+    }
+</style>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route('dashboard')}}" class="brand-link">
-        <img src="{{asset('img/app-logo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Evorama</span>
+        <img src="{{asset('img/maranatha.png')}}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+        <span class="brand-text">One Maranatha</span>
     </a>
 
     <!-- Sidebar -->
@@ -12,7 +19,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+                @if(Auth::user()->profile == NULL)
                 <img src="{{asset('img/user-photo-default.png')}}" class="img-circle elevation-2" alt="User Image">
+                @else
+                <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle elevation-2" alt="User Image">
+                @endif
             </div>
             <div class="info">
                 @if(Auth::user()->role =='Admin')
@@ -35,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('mahasiswaList')}}" class="nav-link">
+                    <a href="{{route('userList')}}" class="nav-link">
                         <i class="nav-icon fa fa-user-circle"></i>
                         <p>Mahasiswa</p>
                     </a>
@@ -64,13 +75,32 @@
                         <p>Ruangan</p>
                     </a>
                 </li>
+
+                @elseif (Auth::user()->role =='Mahasiswa')
                 <li class="nav-item">
-                    <a href="{{route('userList')}}" class="nav-link">
-                        <i class="nav-icon fa fa-address-card"></i>
-                        <p>User Management</p>
+                    <a href="{{route('dashboard')}}" class="nav-link">
+                        <i class="nav-icon fa fa-dashboard"></i>
+                        <p>Dashboard</p>
                     </a>
                 </li>
-                @elseif (Auth::user()->role =='Mahasiswa')
+                <li class="nav-item">
+                    <a href="{{route('perwalianMahasiswa')}}" class="nav-link">
+                        <i class="nav-icon fa fa-graduation-cap"></i>
+                        <p>Perwalian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dkbsList')}}" class="nav-link">
+                        <i class="nav-icon fa fa-tasks"></i>
+                        <p>DKBS</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('dashboard')}}" class="nav-link">
+                        <i class="nav-icon fa fa-dashboard"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="{{route('mataKuliahMahasiswaList')}}" class="nav-link">
                         <i class="nav-icon fa fa-book"></i>

@@ -22,8 +22,9 @@
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
+        <div class="card">
             <div class="card-body p-0">
-                <table class="table table-hover mb-0 text-center">
+                <table class="table table-hover mb-0 text-center data">
                     <thead>
                     <tr>
                         <th>Kode Matkul</th>
@@ -56,5 +57,11 @@
 
     </div><!-- /.container-fluid -->
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('table').DataTable();
+    });
+</script>
 <!-- /.content -->
 @endsection
