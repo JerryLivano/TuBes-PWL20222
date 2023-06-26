@@ -22,6 +22,7 @@ class MataKuliahController extends Controller
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
+            
         } elseif (Auth::user()->role =='Mahasiswa'){
             $data = DB::table('mata_kuliah')
             ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')

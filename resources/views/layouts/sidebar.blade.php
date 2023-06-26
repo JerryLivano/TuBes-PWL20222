@@ -84,6 +84,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{route('perwalianMahasiswa')}}" class="nav-link">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>Perwalian</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{route('dkbsList')}}" class="nav-link">
                         <i class="nav-icon fa fa-tasks"></i>
                         <p>DKBS</p>
@@ -93,12 +99,6 @@
                     <a href="{{route('mataKuliahMahasiswaList')}}" class="nav-link">
                         <i class="nav-icon fa fa-book"></i>
                         <p>Mata Kuliah</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('perwalianMahasiswa')}}" class="nav-link">
-                        <i class="nav-icon fa fa-book"></i>
-                        <p>Perwalian</p>
                     </a>
                 </li>
                 @endif
