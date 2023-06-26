@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\MahasiswaMemilikiMatkul;
+use App\DKBS;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class MahasiswaMemilikiMatkulController extends Controller
+class DKBSController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,15 @@ class MahasiswaMemilikiMatkulController extends Controller
      */
     public function index()
     {
-        $data = MahasiswaMemilikiMatkul::all();
-        return view('mahasiswamemilikimatkul.index',[
-            'mahasiswamemilikimatkuls'=> $data
+        $data = DB::table('dkbs')
+        ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'dkbs.kelas', 'dkbs.hari', 'dkbs.jam_awal', 'dkbs.jam_akhir', 'dkbs.ruangan')
+        ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'dkbs.kode_matkul')
+        ->where('dkbs.nrp', Auth::user()->id)
+        ->orderBy('mata_kuliah.nama_matkul', 'ASC')
+        ->get();
+
+        return view('DKBS.index',[
+            'dkbss' => $data
         ]);
     }
 
@@ -44,10 +52,10 @@ class MahasiswaMemilikiMatkulController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MahasiswaMemilikiMatkul  $mahasiswaMemilikiMatkul
+     * @param  \App\DKBS  $dKBS
      * @return \Illuminate\Http\Response
      */
-    public function show(MahasiswaMemilikiMatkul $mahasiswaMemilikiMatkul)
+    public function show(DKBS $dKBS)
     {
         //
     }
@@ -55,10 +63,10 @@ class MahasiswaMemilikiMatkulController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MahasiswaMemilikiMatkul  $mahasiswaMemilikiMatkul
+     * @param  \App\DKBS  $dKBS
      * @return \Illuminate\Http\Response
      */
-    public function edit(MahasiswaMemilikiMatkul $mahasiswaMemilikiMatkul)
+    public function edit(DKBS $dKBS)
     {
         //
     }
@@ -67,10 +75,10 @@ class MahasiswaMemilikiMatkulController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\MahasiswaMemilikiMatkul  $mahasiswaMemilikiMatkul
+     * @param  \App\DKBS  $dKBS
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MahasiswaMemilikiMatkul $mahasiswaMemilikiMatkul)
+    public function update(Request $request, DKBS $dKBS)
     {
         //
     }
@@ -78,10 +86,10 @@ class MahasiswaMemilikiMatkulController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\MahasiswaMemilikiMatkul  $mahasiswaMemilikiMatkul
+     * @param  \App\DKBS  $dKBS
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MahasiswaMemilikiMatkul $mahasiswaMemilikiMatkul)
+    public function destroy(DKBS $dKBS)
     {
         //
     }

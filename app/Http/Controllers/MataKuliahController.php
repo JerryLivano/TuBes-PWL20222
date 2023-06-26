@@ -19,22 +19,23 @@ class MataKuliahController extends Controller
     public function index()
     {
         if(Auth::user()->role =='Admin'){
-            $data = MataKuliah::all();
             return view('mata_kuliah.index',[
                 'mata_kuliahs' => $data
             ]);
+            
         } elseif (Auth::user()->role =='Mahasiswa'){
             $data = DB::table('mata_kuliah')
             ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi')
             ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
             ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
             ->where('users.id', Auth::user()->id)
+            ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
+  
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
             ]);
         }
-       
     }
 
     /**
@@ -60,15 +61,18 @@ class MataKuliahController extends Controller
             'txtKodeMatkul' => 'required|string|max:50',
             'txtName' => 'required|string|max:100',
             'txtSemester' => 'required|string|max:50',
-            'txtKodeProdi' => 'required|int'
+            'txtBebanSks' => 'required|integer|max:10',
+            'txtDeskripsi' => 'nullable|string|max:100',
         ]) -> validate();
         $matkul = new MataKuliah();
         $matkul -> kode_matkul = $validatedData['txtKodeMatkul'];
         $matkul -> nama_matkul = $validatedData['txtName'];
         $matkul -> semester = $validatedData['txtSemester'];
-        $matkul -> kode_prodi = $validatedData['txtKodeProdi'];
+        $matkul -> beban_sks = $validatedData['txtBebanSks'];
+        $matkul -> deskripsi = $validatedData['txtDeskripsi'];
+        $matkul -> kode_prodi = Auth::user()->kode_prodi;
         $matkul -> save();
-        return redirect(route('mataKuliahList'));
+        return redirect(route('mataKuliahList'), compact('prodi'));
     }
 
     /**
@@ -109,12 +113,14 @@ class MataKuliahController extends Controller
             'txtKodeMatkul' => 'required|string|max:50',
             'txtName' => 'required|string|max:100',
             'txtSemester' => 'required|string|max:50',
-            'txtKodeProdi' => 'required|int'
+            'txtBebanSks' => 'required|integer|max:10',
+            'txtDeskripsi' => 'nullable|string|max:100'
         ])->validate();
         $mataKuliah -> kode_matkul = $validatedData['txtKodeMatkul'];
         $mataKuliah -> nama_matkul = $validatedData['txtName'];
         $mataKuliah -> semester = $validatedData['txtSemester'];
-        $mataKuliah -> kode_prodi = $validatedData['txtKodeProdi'];
+        $mataKuliah -> beban_sks = $validatedData['txtBebanSks'];
+        $mataKuliah -> deskripsi = $validatedData['txtDeskripsi'];
         $mataKuliah -> save();
         return redirect(route('mataKuliahList'));
     }

@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\DKBSController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MahasiswaMemilikiMatkulController;
 use App\Http\Controllers\ProgramStudiController;
@@ -20,9 +21,9 @@ use App\Mahasiswa;
 use App\ProgramStudi;
 use App\Ruangan;
 use App\Http\Controllers\MataKuliahDetailController;
-use App\Http\Controllers\PerwalianController;
+use App\Http\Controllers\PerwalianController; 
 use App\Http\Controllers\RuanganController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ruangan/create', [RuanganController::class, 'store'])->name('storeRuangan');
     Route::get('/ruangan/delete/{ruangan}', [RuanganController::class, 'destroy'])->name('deleteRuanganList');
     Route::post('/ruangan/edit/{ruangan}', [RuanganController::class, 'update'])->name('updateRuanganList');
-    Route::get('/ruangan/edit/{ruangan}', [MataKuliahDetailController::class, 'edit'])->name('editRuanganList');
+    Route::get('/ruangan/edit/{ruangan}', [RuanganController::class, 'edit'])->name('editRuanganList');
 
     Route::get('/perwalian', [PerwalianController::class, 'index'])->name('perwalianList');
     Route::get('/perwalian/create', [PerwalianController::class, 'create'])->name('createPerwalian');
@@ -92,5 +93,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/MataKuliahMahasiswaDetail',[MataKuliahDetailController::class,'index'])->name('mataKuliahMahasiswaDetailList');
 
-    Route::get('/DKBS', [])
+    Route::get('/UserMahasiswa',[UserController::class,'index'])->name('profile');
+    Route::post('/UserMahasiswa/edit/{user}', [UserController::class, 'update'])->name('updateProfile');
+    Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
+
+    Route::get('/PerwalianMahasiswa',[MataKuliahDetailController::class,'index'])->name('perwalianMahasiswa');
+  
+    Route::get('/dkbs',[DKBSController::class,'index'])->name('dkbsList');
+
 });

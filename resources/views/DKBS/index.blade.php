@@ -35,15 +35,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($MataKuliahMahasiswa as $matkul)
+                    @foreach($dkbss as $dkbs)
                             <tr data-toggle="dropdown">
-                                <td>{{$matkul->kode_matkul}}</td>
-                                <td>{{$matkul->nama_matkul}}</td>
-                                <td>{{$matkul->semester}}</td>
-                                <td>{{$matkul->beban_sks}}</td>
-                                <td>{{$matkul->deskripsi}}</td>
+                                <td>{{$dkbs->kode_matkul}}</td>
+                                <td>{{$dkbs->nama_matkul}}</td>
+                                <td>{{$dkbs->kelas}}</td>
+                                <td>{{$dkbs->hari}}</td>
+                                <td>{{$dkbs->jam_awal}} - {{$dkbs->jam_akhir}}</td>
+                                <td>{{$dkbs->ruangan}}</td>
                             </tr>
-                            
                         @endforeach
                     </tbody>
                 </table>
@@ -53,5 +53,10 @@
 
     </div><!-- /.container-fluid -->
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('table').DataTable();
+    });
+</script>
 <!-- /.content -->
 @endsection

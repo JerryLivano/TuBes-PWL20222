@@ -17,7 +17,7 @@ class RuanganController extends Controller
         $data = Ruangan::all();
         return view('ruangan.index',[
             'ruangans' => $data
-        ]);
+        ]); 
     }
 
     /**
@@ -44,12 +44,10 @@ class RuanganController extends Controller
         ])->validate();
         $ruangan = new Ruangan();
         $ruangan->kode_ruang = $validatedData['txtId'];
-        $ruangan->save();
         $ruangan->nama_ruang = $validatedData['txtName'];
         $ruangan->save();
         return redirect(route('ruanganList'));
     }
-
     /**
      * Display the specified resource.
      *

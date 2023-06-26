@@ -29,6 +29,19 @@
                 <form action="{{route('storeUserList')}}" method="post">
                     @csrf
 
+                    <label for="id">NRP/NIK</label>
+                    <div class="input-group mb-3">
+                        <input id="id" type="text" class="form-control @error('id') is-invalid @enderror"
+                            placeholder="NRP/NIK" name="id" value="{{ old('id') }}" required autocomplete="id"
+                            autofocus>
+                    </div>
+                    @error('id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    <label for="name">Nama</label>
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Full name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                     </div>
@@ -38,6 +51,7 @@
                     </span>
                     @enderror
 
+                    <label for="email">Email</label>
                     <div class="input-group mb-3">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" placeholder="Email" required autocomplete="email">
                     </div>
@@ -47,6 +61,7 @@
                     </span>
                     @enderror
 
+                    <label for="password">Password</label>
                     <div class="input-group mb-3">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="new-password">
                     </div>
@@ -60,14 +75,57 @@
                         <input id="password-confirm" type="password" class="form-control" placeholder="Retype password" name="password_confirmation" required autocomplete="new-password">
                     </div>
 
+                    @error('role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    <label for="address">Alamat</label>
                     <div class="input-group mb-3">
-                        <select id="role" type="text" class="form-control @error('role') is-invalid @enderror" placeholder="Role" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
-                            <option value="" selected disabled>Select Role</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Program Studi">Program Studi</option>
+                        <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" placeholder="Alamat" name="address" value="{{ old('address') }}" autofocus>
+                    </div>
+                    @error('address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    <label for="gender">Jenis Kelamin</label>
+                    <div class="input-group mb-3">
+                        <select id="gender" type="text" class="form-control @error('gender') is-invalid @enderror" placeholder="Gender" name="gender" value="{{ old('gender') }}" autofocus>
+                            <option value="" selected disabled>Select Gender</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
-                    @error('role')
+                    @error('gender')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                    <div class="input-group mb-3">
+                        <input id="tanggal_lahir" type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" placeholder="Tanggal Lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" autofocus>
+                    </div>
+                    @error('tanggal_lahir')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    <label for="profile">Foto Profil</label>
+                    <div class="input-group mb-3">
+                        <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>
+                    </div>
+                    @error('profile')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+
+                    @error('kode_prodi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
