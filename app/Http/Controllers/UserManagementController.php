@@ -72,8 +72,12 @@ class UserManagementController extends Controller
         }
         $users->gender = $validatedData['gender'];
         $users->tanggal_lahir = $validatedData['tanggal_lahir'];
-        $profileName = $validatedData['id'] . "." . $validatedData['profile']->getClientOriginalExtension();
-        $users->profile = $profileName;
+        if ($request['profile'] == '') {
+            $validatedData['profile'] = null;
+        } else {
+            $profileName = $validatedData['id'] . "." . $validatedData['profile']->getClientOriginalExtension();
+            $users->profile = $profileName;
+        }
         $users->kode_prodi = Auth::user()->kode_prodi;
         $users->save();
         return redirect(route('userList'));
@@ -116,7 +120,6 @@ class UserManagementController extends Controller
             'id' => ['required', 'string', 'max:50'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
             'role' => ['nullable', 'required', 'string'],
             'alamat' => ['nullable', 'string', 'max:100'],
             'gender' => ['nullable', 'string', 'max:50'],
@@ -128,7 +131,6 @@ class UserManagementController extends Controller
         $users->id = $validatedData['id'];
         $users->name = $validatedData['name'];
         $users->email = $validatedData['email'];
-        $users->password = Hash::make($validatedData['password']);
         $users->role = $validatedData['role'];
         $users->alamat = $validatedData['alamat'];
         if ($request['gender'] == '') {
@@ -155,5 +157,35 @@ class UserManagementController extends Controller
     {
         $users->delete();
         return redirect(route('userList'));
+    }
+
+    public function changePasswordEdit(User $users)
+    {
+        return view('users/changePassword', [
+            'user' => $users
+        ]);
+    }
+
+    public function changePasswordUpdate(Request $request, User $users)
+    {
+        $validatedData = validator($request->all(), [
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+        ])->validate();
+
+        $users->password = Hash::make($validatedData['password']);
+        $users->save();
+        if (Auth::user()->role == 'Admin') {
+            return view('users/edit', [
+                'user' => $users
+            ]);
+        } else {
+            $data = DB::table('users')
+                ->select('*')
+                ->where('users.id', Auth::user()->id)
+                ->get();
+            return view('UserMahasiswa.index', [
+                'UserMahasiswa' => $data
+            ]);
+        };
     }
 }

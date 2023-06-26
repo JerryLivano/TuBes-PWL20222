@@ -44,6 +44,7 @@ class PerwalianController extends Controller
         ])->validate();
         $perwalian = new Perwalian();
         $perwalian->semester = $validatedData['txtSemester'];
+        $perwalian->status = 0;
         $perwalian->save();
         return redirect(route('perwalianList'));
     }
@@ -105,8 +106,26 @@ class PerwalianController extends Controller
     public function getAllSks()
     {
         $purchases = DB::table('transactions')
-        ->join('categories', 'transactions.category_id', '=', 'categories.id')
-        ->where('categories.kind', '=', 1)
-        ->sum('transactions.amount');
+            ->join('categories', 'transactions.category_id', '=', 'categories.id')
+            ->where('categories.kind', '=', 1)
+            ->sum('transactions.amount');
+    }
+
+    public function deactive()
+    {
+        $data = Perwalian::all();
+        foreach ($data as $datas) {
+            $datas->status = 0;
+            $datas->save();
+        }
+        return redirect(route('perwalianList'));
+    }
+
+    public function activate(Perwalian $perwalian)
+    {
+        self::deactive();
+        $perwalian->status = 1;
+        $perwalian->save();
+        return redirect(route('perwalianList'));
     }
 }

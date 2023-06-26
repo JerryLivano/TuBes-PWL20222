@@ -25,7 +25,6 @@
         <div class="login-logo">
             Perwalian
         </div>
-        
         @yield('content')
     </div>
     <!-- /.login-box -->
