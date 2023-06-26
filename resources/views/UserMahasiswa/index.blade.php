@@ -22,40 +22,49 @@
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
-
         <div class="card">
-            <div class="card-body p-2">
-                <form method="post">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>Foto Profil</h2>
+                        @if(Auth::user()->profile == NULL)
+                        <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="450">
+                        @else
+                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle" alt="User Image">
+                        @endif
+                    </div>
                     @csrf
-                    <div class="form-group">
-                        <label for="txtId">NRP</label>
-                        <input type="text" id="txtId" name="txtId" class="form-control" required placeholder="Kode Prodi" readonly value="{{ $UserMahasiswa[0] -> id }}">
+                    <div class="col-sm-7 mt-5">
+                        <div class="form-group mb-4">
+                            <label for="txtId">NRP</label>
+                            <h5 id="txtId" name="txtId">{{ $UserMahasiswa[0] -> id }}</h5>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="txtName">Nama Lengkap</label>
+                            <h5 id="txtName" name="txtName">{{ $UserMahasiswa[0] -> name }}</h5>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="txtEmail">Email</label>
+                            <h5 id="txtEmail" name="txtEmail">{{ $UserMahasiswa[0] -> email }}</h5>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="txtName">Alamat</label>
+                            <h5 id="txtName" name="txtName">{{ $UserMahasiswa[0] -> alamat }}</h5>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="txtName">Gender</label>
+                            <h5 id="txtName" name="txtName">{{ $UserMahasiswa[0] -> gender }}</h5>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="txtName">Tanggal Lahir</label>
+                            <h5 id="txtName" name="txtName">{{ $UserMahasiswa[0] -> tanggal_lahir }}</h5>
+                        </div>
+                    
+                        <div class="text-right">
+                            <a href="{{ route('editProfile',  ['id' => $UserMahasiswa[0]->id])}}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i> Edit</a>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="txtName">Nama Lengkap</label>
-                        <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" readonly value="{{ $UserMahasiswa[0] -> name }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName">Email</label>
-                        <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" readonly value="{{ $UserMahasiswa[0] -> email }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName">Alamat</label>
-                        <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" readonly value="{{ $UserMahasiswa[0] -> alamat }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName">Gender</label>
-                        <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" readonly value="{{ $UserMahasiswa[0] -> gender  }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName">Tanggal Lahir</label>
-                        <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" readonly value="{{ $UserMahasiswa[0] -> tanggal_lahir }}">
-                    </div>
-                   
-                    <div class="text-right">
-                        <a href="{{ route('editProfile',  ['id' => $UserMahasiswa[0]->id])}}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i> Edit</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div><!-- /.container-fluid -->

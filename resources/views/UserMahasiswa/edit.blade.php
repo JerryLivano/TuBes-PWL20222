@@ -36,26 +36,35 @@
                         <input type="text" id="txtName" name="txtName" class="form-control" required placeholder="" value="{{ $UserMahasiswa -> name }}">
                     </div>
                     <div class="form-group">
-                        <label for="txtName">Email</label>
+                        <label for="txtEmail">Email</label>
                         <input type="text" id="txtEmail" name="txtEmail" class="form-control" required placeholder="" value="{{ $UserMahasiswa -> email }}">
                     </div>
                     <div class="form-group">
-                        <label for="txtName">Alamat</label>
+                        <label for="txtAlamat">Alamat</label>
                         <input type="text" id="txtAlamat" name="txtAlamat" class="form-control" required placeholder="" value="{{ $UserMahasiswa -> alamat }}">
                     </div>
                     <div class="form-group">
-                        <label for="txtName">Gender</label>
+                        <label for="txtGender">Gender</label>
                         <input type="text" id="txtGender" name="txtGender" class="form-control" required placeholder="" value="{{ $UserMahasiswa -> gender  }}">
                     </div>
                     <div class="form-group">
-                        <label for="txtName">Tanggal Lahir</label>
+                        <label for="txtLahir">Tanggal Lahir</label>
                         <input type="date" id="txtLahir" name="txtLahir" class="form-control"  placeholder="" value="{{ $UserMahasiswa -> tanggal_lahir }}">
                     </div>
-                   
+                    <div class="form-group">
+                        <label for="profile">Profile Sekarang</label><br>
+                        @if(Auth::user()->profile == NULL)
+                        <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="300">
+                        @else
+                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle" alt="User Image" width="300">
+                        @endif
+                        <div class="mt-4">
+                            <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>
+                        </div>
+                    </div>
                     <div class="text-right">
-                        {{-- <a href="{{ route('updateUser') }}" class="btn btn-outline-secondary mr-2" role="button"> Edit</a> --}}
-                        <a href="{{ route('userList')}}" class="btn btn-danger" role="button" style="cursor: pointer;">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="{{ route('profile')}}" class="btn btn-danger" role="button" style="cursor: pointer;"><i class="fa fa-times"></i> Cancel</a>
+                        <button type="submit" class="btn btn-primary" style="cursor: pointer;"><i class="fa fa-save"></i> Save</button>
                     </div>
                 </form>
             </div>
