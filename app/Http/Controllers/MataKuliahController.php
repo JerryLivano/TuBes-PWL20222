@@ -142,4 +142,6 @@ class MataKuliahController extends Controller
         $mataKuliah->delete();
         return redirect(route('mataKuliahList'));
     }
+
+
 }

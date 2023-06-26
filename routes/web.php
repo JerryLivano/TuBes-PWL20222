@@ -24,7 +24,7 @@ use App\Http\Controllers\MataKuliahDetailController;
 use App\Http\Controllers\PerwalianController; 
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
-
+use Illuminate\Http\Request;
 Route::get('/', function () {
     return redirect(route('login'));
 });
@@ -101,4 +101,9 @@ Route::middleware('auth')->group(function () {
   
     Route::get('/dkbs',[DKBSController::class,'index'])->name('dkbsList');
 
+    
+
+    
 });
+
+
