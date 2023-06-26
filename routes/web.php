@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/usermanagement/delete/{users}', [UserManagementController::class, 'destroy'])->name('deleteUser');
     Route::get('/usermanagement/edit/{users}', [UserManagementController::class, 'edit'])->name('EditUserList');
     Route::post('/usermanagement/edit/{users}', [UserManagementController::class, 'update'])->name('UpdateUserList');
+    Route::get('/usermanagement/changePassword/{users}', [UserManagementController::class, 'changePasswordEdit'])->name('EditPasswordUserList');
+    Route::post('/usermanagement/changePassword/{users}', [UserManagementController::class, 'changePasswordUpdate'])->name('UpdatePasswordUserList');
 
     Route::get('/matakuliahdetail', [MataKuliahDetailController::class, 'index'])->name('mataKuliahDetailList');
     Route::get('/matakuliahdetail/create', [MataKuliahDetailController::class, 'create'])->name('createMataKuliahDetail');

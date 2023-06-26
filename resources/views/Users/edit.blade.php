@@ -44,11 +44,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control" required placeholder="Password" name="password" value="{{ $user -> password }}">
-                    </div>
-
-                    <div class="form-group">
                         <label for="role">Role</label>
                         <select id="role" type="text" class="form-control" required placeholder="Role" name="role">
                             <option value="" {{ $user -> role === '' ? 'selected' : ''}} disabled>Select Role</option>
@@ -94,11 +89,15 @@
                         </select>
                     </div>
 
+                    <div class="input-group mb-3">
+                        <a href="{{ route('EditPasswordUserList', ['id'=>$user -> id]) }}" class="btn btn-warning " role="button">Change Password</a>
+                    </div>
+
                     <div class="text-right">
                         <a href="{{ route('userList') }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-
+                    
                 </form>
             </div>
         </div>
