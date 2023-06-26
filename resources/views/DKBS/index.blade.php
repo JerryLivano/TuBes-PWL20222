@@ -22,9 +22,8 @@
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
-        <div class="card">
             <div class="card-body p-0">
-                <table class="table table-hover mb-0 text-center data">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                     <tr>
                         <th>Kode</th>
@@ -36,7 +35,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($dkbss as $dkbs)
+                    @foreach($dkbss as $dkbs)
                             <tr data-toggle="dropdown">
                                 <td>{{$dkbs->kode_matkul}}</td>
                                 <td>{{$dkbs->nama_matkul}}</td>
@@ -54,7 +53,6 @@
 
     </div><!-- /.container-fluid -->
 </div>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $('table').DataTable();

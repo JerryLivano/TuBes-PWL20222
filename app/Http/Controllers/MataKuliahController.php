@@ -25,7 +25,7 @@ class MataKuliahController extends Controller
             
         } elseif (Auth::user()->role =='Mahasiswa'){
             $data = DB::table('mata_kuliah')
-            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi', 'mata_kuliah.kode_prodi')
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi')
             ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
             ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
             ->where('users.id', Auth::user()->id)
