@@ -23,7 +23,7 @@
 <div class="content">
     <div class="container-fluid">
         @foreach (array("Senin", "Selasa", "Rabu", "Kamis", "Jumat") as $hari)
-        <div class="card text-center bg-primary">
+        <div class="card text-center bg-dark">
             <div class=""><h1>{{ $hari }}</h1></div>
             <div class="card-body p-0 bg-light">
                 <table class="table table-hover mb-0">

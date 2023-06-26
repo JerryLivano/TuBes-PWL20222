@@ -85,7 +85,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('perwalianMahasiswa')}}" class="nav-link">
-                        <i class="nav-icon fa fa-book"></i>
+                        <i class="nav-icon fa fa-graduation-cap"></i>
                         <p>Perwalian</p>
                     </a>
                 </li>

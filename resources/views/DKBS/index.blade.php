@@ -42,7 +42,7 @@
                                 <td>{{$dkbs->nama_matkul}}</td>
                                 <td>{{$dkbs->kelas}}</td>
                                 <td>{{$dkbs->hari}}</td>
-                                <td>{{\Carbon\Carbon::createFromFormat('H:i:s',$dkbs->jam_awal)->format('h:i')}} - {{\Carbon\Carbon::createFromFormat('H:i:s',$dkbs->jam_akhir)->format('h:i')}}</td>
+                                <td>{{$dkbs->jam_awal}} - {{$dkbs->jam_akhir}}</td>
                                 <td>{{$dkbs->ruangan}}</td>
                             </tr>
                         @endforeach
