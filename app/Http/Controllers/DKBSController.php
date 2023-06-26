@@ -17,13 +17,13 @@ class DKBSController extends Controller
     public function index()
     {
         $data = DB::table('dkbs')
-        ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'dkbs.kelas', 'dkbs.hari', 'dkbs.jam_awal', 'dkbs.jam_akhir', 'dkbs.ruangan')
-        ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'dkbs.kode_matkul')
-        ->where('dkbs.nrp', Auth::user()->id)
-        ->orderBy('mata_kuliah.nama_matkul', 'ASC')
-        ->get();
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'dkbs.kelas', 'dkbs.hari', 'dkbs.jam_awal', 'dkbs.jam_akhir', 'dkbs.ruangan')
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'dkbs.kode_matkul')
+            ->where('dkbs.nrp', Auth::user()->id)
+            ->orderBy('mata_kuliah.nama_matkul', 'ASC')
+            ->get();
 
-        return view('DKBS.index',[
+        return view('DKBS.index', [
             'dkbss' => $data
         ]);
     }

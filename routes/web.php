@@ -91,6 +91,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/perwalian/edit/{perwalian}', [PerwalianController::class, 'edit'])->name('editPerwalian');
     Route::get('/perwalian/deactive/', [PerwalianController::class, 'deactive'])->name('deactive');
     Route::get('/perwalian/activate/{perwalian}', [PerwalianController::class, 'activate'])->name('activate');
+    Route::get('/perwalian/dkbsList/{perwalian}', [PerwalianController::class, 'dkbsIndex'])->name('dkbsAdminList');
+    Route::get('/perwalian/dkbsList/{perwalian}/mahasiswa/{nrp}', [PerwalianController::class, 'dkbsListAdmin'])->name('dkbsAdminMahasiswaList');
 
 
     Route::get('/MataKuliahMahasiswa', [MataKuliahController::class, 'index'])->name('mataKuliahMahasiswaList');

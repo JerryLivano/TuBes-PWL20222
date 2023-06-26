@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DKBS;
 use App\Perwalian;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PerwalianController extends Controller
@@ -103,14 +106,6 @@ class PerwalianController extends Controller
         return redirect(route('perwalianList'));
     }
 
-    public function getAllSks()
-    {
-        $purchases = DB::table('transactions')
-            ->join('categories', 'transactions.category_id', '=', 'categories.id')
-            ->where('categories.kind', '=', 1)
-            ->sum('transactions.amount');
-    }
-
     public function deactive()
     {
         $data = Perwalian::all();
@@ -127,5 +122,32 @@ class PerwalianController extends Controller
         $perwalian->status = 1;
         $perwalian->save();
         return redirect(route('perwalianList'));
+    }
+
+    public function dkbsIndex(Perwalian $perwalian)
+    {
+        $data = DB::table('perwalian')
+            ->select('perwalian.id', 'dkbs.nrp', 'users.name')
+            ->join('dkbs', 'dkbs.perwalian_id', '=', 'perwalian.id')
+            ->join('users', 'users.id', '=', 'dkbs.nrp')
+            ->where('users.kode_prodi', Auth::user()->kode_prodi)
+            ->where('dkbs.perwalian_id', $perwalian->id)
+            ->distinct()
+            ->get();
+        return view('perwalian/dkbsList', [
+            'perwalian' => $data
+        ]);
+    }
+
+    public function dkbsListAdmin(Perwalian $perwalian, $nrp)
+    {
+        $data = DB::table('dkbs')
+            ->select('*')
+            ->where('dkbs.perwalian_id', $perwalian->id)
+            ->where('dkbs.nrp', $nrp)
+            ->get();
+        return view('perwalian/dkbsPerMahasiswa', [
+            'perwalian' => $data
+        ]);
     }
 }
