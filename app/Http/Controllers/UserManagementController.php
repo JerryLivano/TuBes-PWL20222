@@ -56,8 +56,7 @@ class UserManagementController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'address' => ['nullable', 'string', 'max:100'],
             'gender' => ['nullable', 'string', 'max:50'],
-            'tanggal_lahir' => ['nullable', 'date'],
-            'profile' => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048']
+            'tanggal_lahir' => ['nullable', 'date']
         ])->validate();
 
         $users = new User();
@@ -72,12 +71,6 @@ class UserManagementController extends Controller
         }
         $users->gender = $validatedData['gender'];
         $users->tanggal_lahir = $validatedData['tanggal_lahir'];
-        if ($request['profile'] == '') {
-            $validatedData['profile'] = null;
-        } else {
-            $profileName = $validatedData['id'] . "." . $validatedData['profile']->getClientOriginalExtension();
-            $users->profile = $profileName;
-        }
         $users->kode_prodi = Auth::user()->kode_prodi;
         $users->save();
         return redirect(route('userList'));
@@ -124,7 +117,6 @@ class UserManagementController extends Controller
             'alamat' => ['nullable', 'string', 'max:100'],
             'gender' => ['nullable', 'string', 'max:50'],
             'tanggal_lahir' => ['nullable', 'date'],
-            'profile' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:10000'],
             'kode_prodi' => ['required', 'int']
         ])->validate();
 
@@ -138,10 +130,14 @@ class UserManagementController extends Controller
         }
         $users->gender = $validatedData['gender'];
         $users->tanggal_lahir = $validatedData['tanggal_lahir'];
-        if ($request['profile'] == '') {
-            $validatedData['profile'] = null;
+        $file = $request->file('profileUser');
+        $extension = $file->getClientOriginalExtension();
+        $filename = $users -> id . '.' . $extension;
+        if ($users -> profile != NULL){
+            unlink('img/' . $users -> profile);
         }
-        $users->profile = $validatedData['profile'];
+        $file->move('img/', $filename);
+        $users -> profile = $filename;
         $users->kode_prodi = $validatedData['kode_prodi'];
         $users->save();
         return redirect(route('userList'));

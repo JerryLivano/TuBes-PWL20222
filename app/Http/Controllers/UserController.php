@@ -85,14 +85,23 @@ class UserController extends Controller
             'txtEmail' => 'string|max:50',
             'txtAlamat' => 'string|max:100',
             'txtGender' => 'string|max:20',
-            'txtLahir' => 'date|max:100',
+            'txtLahir' => 'date|max:100'
         ])->validate();
+
         $user -> id = $validatedData['txtId'];
         $user -> name = $validatedData['txtName'];
         $user -> email = $validatedData['txtEmail'];
         $user -> alamat = $validatedData['txtAlamat'];
         $user -> gender = $validatedData['txtGender'];
         $user -> tanggal_lahir = $validatedData['txtLahir'];
+        $file = $request->file('profile');
+        $extension = $file->getClientOriginalExtension();
+        $filename = $user -> id . '.' . $extension;
+        if ($user -> profile != NULL){
+            unlink('img/' . $user -> profile);
+        }
+        $file->move('img/', $filename);
+        $user -> profile = $filename;
         $user -> save();
         return redirect(route('profile'));
     }

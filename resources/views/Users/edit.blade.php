@@ -71,11 +71,6 @@
                         <input id="tanggal_lahir" type="date" class="form-control" placeholder="Tanggal Lahir" name="tanggal_lahir" value="{{ $user -> tanggal_lahir }}">
                     </div>
 
-                    <div class="form-group">
-                        <label for="profile">Foto Profil</label><br>
-                        <input id="profile" type="file" class="" name="profile" value="{{ $user -> profile }}">
-                    </div>
-
                     <label for="kode_prodi">Prodi</label>
                     <div class="input-group mb-3">
                         <select id="kode_prodi" type="text" class="form-control"
