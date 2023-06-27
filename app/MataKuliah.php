@@ -17,5 +17,5 @@ class MataKuliah extends Model
         'beban_sks',
         'deskripsi',
         'kode_prodi'
-    ];
+    ]; 
 }
