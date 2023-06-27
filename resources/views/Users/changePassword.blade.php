@@ -42,7 +42,11 @@
                     </div>
 
                     <div class="text-right">
+                        @if (Auth::user()->role == 'Admin')
                         <a href="{{ route('EditUserList', ['id' => $user->id]) }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
+                        @else
+                        <a href="{{ route('editProfile', ['id' => $user->id]) }}" class="btn btn-outline-secondary mr-2" role="button">Cancel</a>
+                        @endif
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>

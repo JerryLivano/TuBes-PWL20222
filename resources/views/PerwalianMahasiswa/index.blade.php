@@ -50,22 +50,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <form method="POST" id="myForm">
+                        <form onsubmit=" " method="POST" id="myForm" action="{{ route('tampilMatkulTerpilih') }}">
                             @csrf
                     @if($hari == 'Senin')
                         @foreach($matakuliahdetails[0] as $matkulSenin)
                             <tr>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSenin -> kode_matkul}}" readonly>
+                                    <input class="text"  type="text" value="{{$matkulSenin -> kode_matkul}} " readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> nama_matkul}}" readonly>
+                                    <input  class="text"  type="text" value="{{$matkulSenin -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> kelas}}" readonly>
+                                    <input  class="text" name="txtKode[{{$matkulSenin -> kelas}}]" type="text" value="{{$matkulSenin -> kelas}} " readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> tipe}}" readonly>
+                                    <input  class="text" type="text" name="txtKode[{{$matkulSenin -> tipe}}]" value="{{$matkulSenin -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> kuota}}" readonly>
@@ -74,7 +74,7 @@
                                     <input  class="text" type="text" value="{{$matkulSenin -> beban_sks}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> hari}}" readonly>
+                                    <input  class="text"   type="text" value="{{$matkulSenin -> hari}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> jam_awal}} - {{$matkulSenin -> jam_akhir}}" readonly>
@@ -83,7 +83,7 @@
                                     <input  class="text" type="text" value=" {{$matkulSenin -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" onchange="checkSks()" name="values[]" data-value="{{$matkulSenin->beban_sks}}" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()"  name="values[]" data-value="{{$matkulSenin->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -97,10 +97,10 @@
                                     <input class="text" type="text" value="{{$matkulSelasa -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSelasa -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulSelasa -> kelas}}]" type="text" value="{{$matkulSelasa -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSelasa -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulSelasa -> tipe}}]" type="text" value="{{$matkulSelasa -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulSelasa -> kuota}}" readonly>
@@ -132,10 +132,10 @@
                                     <input class="text" type="text" value="{{$matkulRabu -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulRabu -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulRabu -> kelas}}]" type="text" value="{{$matkulRabu -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulRabu -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulRabu -> tipe}}]" type="text" value="{{$matkulRabu -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulRabu -> kuota}}" readonly>
@@ -167,10 +167,10 @@
                                     <input class="text" type="text" value="{{$matkulKamis -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulKamis -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulKamis -> kelas}}]" type="text" value="{{$matkulKamis -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulKamis -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulKamis -> tipe}}]" type="text" value="{{$matkulKamis -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulKamis -> kuota}}" readonly>
@@ -202,10 +202,10 @@
                                     <input class="text" type="text" value="{{$matkulJumat -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulJumat -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulJumat -> kelas}}]" type="text" value="{{$matkulJumat -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulJumat -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulJumat -> tipe}}]" type="text" value="{{$matkulJumat -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulJumat -> kuota}}" readonly>
@@ -233,9 +233,16 @@
             </div>
         </div>
         @endforeach
-        <div class="text-right">
-            <button type="submit" onclick="validateAndSubmit()" class="btn btn-primary">Save</button>
-        </div>
+            <form action="">
+                <div class="mb-1">Pilih Pembayaran: </div>
+                <input type="radio" class="" name="sekali" id="sekali">
+                <label for="sekali" class="form-check-label">1x Bayar</label>
+                <input type="radio" class="" name="tiga" id="tiga" style="margin-left: 30px;">
+                <label for="sekali" class="form-check-label">Cicilan 3x Bayar</label>
+            </form>
+            <div class="text-right">
+                <button type="submit" onclick="validateAndSubmit()" class="btn btn-primary mb-3">Submit</button>
+            </div>
     </form>
         {{-- main content here --}}
     </div><!-- /.container-fluid -->
@@ -247,48 +254,23 @@
         checkboxes.forEach(function (checkbox) {
             if (checkbox.checked) {
                 totalSks += parseInt(checkbox.dataset.value);
-                console.log(totalSks)
-                
             }
+        })
+        checkboxes.forEach(function (checkbox) {
             let jumlah = totalSks + parseInt(checkbox.dataset.value);
-            console.log("asd"+jumlah)
-            if(jumlah>6){
+            if(jumlah>6 && checkbox.checked == false){
                 checkbox.disabled=true
-            }
-            if(checkbox.checked){
+            } else {
                 checkbox.disabled=false
             }
-        });
-        
-        
-        
-            
+        })
+        console.log(totalSks)
+        };
+
+
+    function submitForm() {
+        document.getElementById('myForm').submit(); // Submit the form
     }
-    function validateAndSubmit() {
-        
-
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                totalSks += parseInt(checkbox.dataset.value);
-            }
-        });
-
-        if (totalSks > 3) {
-            alert("Total SKS melebihi 24. Silakan pilih kembali.");
-            checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked==false) {
-               checkbox.disabled=true
-            }
-        });
-            // return redirect()->route('perwalianMahasiswa')->with('error', 'Total SKS melebihi batas maksimal (24)');
-        } else {
-            checkbox.disabled=false
-            // document.getElementById("myForm").submit();
-        }
-    }
-
-
-
 </script>
 <!-- /.content -->
 @endsection

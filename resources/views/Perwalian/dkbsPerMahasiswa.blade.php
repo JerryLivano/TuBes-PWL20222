@@ -23,6 +23,9 @@
 <div class="content">
 	<div class="container-fluid">
         <div class="card">
+            <div class="card-header text-right">
+                <a href="{{route('createDKBSAdmin', ['perwalian' => $perwalian[0]->perwalian_id, 'nrp' => $perwalian[0]->nrp])}}"  class="btn btn-primary" role="button">Input DKBS</a>
+            </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0 text-center">
                     <thead>
@@ -30,9 +33,9 @@
                             <th>Kode Mata Kuliah</th>
                             <th>Kelas</th>
                             <th>Hari</th>
-                            <th>Jam Awal</th>
-                            <th>Jam Akhir</th>
+                            <th>Waktu</th>
                             <th>Ruangan</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,9 +44,11 @@
                             <td>{{$perwalians->kode_matkul}}</td>
                             <td>{{$perwalians->kelas}}</td>
                             <td>{{$perwalians->hari}}</td>
-                            <td>{{$perwalians->jam_awal}}</td>
-                            <td>{{$perwalians->jam_akhir}}</td>
+                            <td>{{$perwalians->jam_awal}}-{{$perwalians->jam_akhir}}</td>
                             <td>{{$perwalians->ruangan}}</td>
+                            <td>
+                                <a href="{{route('deleteDKBSAdmin',['perwalian' => $perwalians->perwalian_id, 'nrp' => $perwalians->nrp, 'kode_matkul' => $perwalians->kode_matkul])}}" class="btn btn-danger" role="button" style="cursor: pointer; color: white;"><i class="nav-icon fa fa-trash"></i></a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DKBS;
 use App\MataKuliah;
 use App\MataKuliahDetail;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class MataKuliahDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $matkul = DB::table('mata_kuliah')
         ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul')
@@ -92,6 +93,39 @@ class MataKuliahDetailController extends Controller
         ->where('dkbs.nrp',Auth::user()->id)
         ->get();
         return view('matakuliahdetail/create', compact(['matkul', 'ruang', 'perwalian']));
+
+        $checkboxValue = $request->input('checkbox');
+        $dataValueTwo = $request->input('data-valuetwo');
+
+        $inputTexts = $request->input('txtKode', []);
+        $arry = [];
+        $x=0;
+        foreach($inputTexts as $value){
+            $arry[$x]=$value;
+            $x++;
+
+        }
+        
+        $matkul = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','ruangan.nama_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->join('ruangan', 'ruangan.kode_ruang', '=', 'matkul_detail.kode_ruang')
+            ->join('perwalian', 'perwalian.id', '=', 'matkul_detail.perwalian_id')
+            ->where('matkul_detail.kelas',$arry[0])
+            ->where('matkul_detail.tipe',$arry[1])
+            ->where('perwalian.status',1)
+            ->get();
+
+        
+       
+        if(Auth::user()->role =='Admin'){
+            return view('matakuliahdetail/create');
+        }
+        elseif(Auth::user()->role =='Mahasiswa'){
+            return view('PerwalianMahasiswa/confirm',[
+                'perwalian' => $matkul
+            ]);
+        }
     }
 
     /**
@@ -173,4 +207,14 @@ class MataKuliahDetailController extends Controller
         $mataKuliahDetail -> delete();
         return redirect(route('mataKuliahDetailList'));
     }
+
+    public function tampilMatkulTerpilih(Request $request)
+    {
+        $selectedValues = $request->input('selectedValues');
+
+        // Process the selected values as needed
+
+        return view('PerwalianMahasiswa/confirm', compact('selectedValues'));
+    }
+
 }

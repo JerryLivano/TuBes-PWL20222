@@ -26,7 +26,7 @@
 
         <div class="card">
             <div class="card-body p-3">
-                <form action="{{route('storeUserList')}}" method="post">
+                <form action="{{route('storeUserList')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <label for="id">NRP/NIK</label>
@@ -110,22 +110,6 @@
                         <input id="tanggal_lahir" type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" placeholder="Tanggal Lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}" autofocus>
                     </div>
                     @error('tanggal_lahir')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-
-                    <label for="profile">Foto Profil</label>
-                    <div class="input-group mb-3">
-                        <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>
-                    </div>
-                    @error('profile')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-
-                    @error('kode_prodi')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
