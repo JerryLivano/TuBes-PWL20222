@@ -104,8 +104,27 @@ Route::middleware('auth')->group(function () {
     Route::get('/UserMahasiswa/edit/{user}', [UserController::class, 'edit'])->name('editProfile');
 
     Route::get('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
-  
+    Route::post('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
+    Route::post('/PerwalianMahasiswa/ConfirmDKBS', [MataKuliahDetailController::class, 'create'])->name('tampilMatkulTerpilih');
+
     Route::get('/dkbs', [DKBSController::class, 'index'])->name('dkbsList');
+
+    
+    Route::post('/proses', function (Request $request) {
+    $values = $request->input('values');
+
+    // Validasi total nilai
+    $total = array_sum($values);
+    if ($total > 3) {
+        return response()->json(['message' => 'Total nilai tidak boleh lebih dari 24'], 400);
+    }
+
+    // Lakukan apa pun yang ingin Anda lakukan dengan nilai yang terpilih
+    // Misalnya, simpan ke database atau lakukan pemrosesan lainnya
+
+    // Kirimkan respons ke klien
+    return response()->json(['message' => 'Nilai berhasil diproses']);
+});
 
 });
 
