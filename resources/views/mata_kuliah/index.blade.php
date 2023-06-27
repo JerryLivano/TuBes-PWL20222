@@ -43,7 +43,7 @@
                     @foreach($mata_kuliahs as $matakuliah)
                         <tr>
                             <td>{{$matakuliah->kode_matkul}}</td>
-                            <td>{{$matakuliah->nama_matkul}}</td>
+                            <td>{{$matakuliah->nama_matkul}}</td> 
                             <td>{{$matakuliah->semester}}</td>
                             <td>{{$matakuliah->beban_sks}}</td>
                             <td>{{$matakuliah->deskripsi}}</td>

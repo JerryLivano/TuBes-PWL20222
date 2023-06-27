@@ -12,10 +12,11 @@ class MataKuliahDetail extends Model
 
     protected $fillable = [
         'tipe',
+        'kelas',
         'kuota',
-        'beban_sks',
         'hari',
-        'jam',
+        'jam_awal',
+        'jam_akhir',
         'kode_matkul',
         'kode_ruang'
     ];

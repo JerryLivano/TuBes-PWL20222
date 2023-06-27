@@ -25,6 +25,7 @@ use App\Http\Controllers\PerwalianController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return redirect(route('login'));
 });
@@ -93,6 +94,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/perwalian/activate/{perwalian}', [PerwalianController::class, 'activate'])->name('activate');
     Route::get('/perwalian/dkbsList/{perwalian}', [PerwalianController::class, 'dkbsIndex'])->name('dkbsAdminList');
     Route::get('/perwalian/dkbsList/{perwalian}/mahasiswa/{nrp}', [PerwalianController::class, 'dkbsListAdmin'])->name('dkbsAdminMahasiswaList');
+    Route::get('/perwalian/dkbsList/{perwalian}/mahasiswa/{nrp}/create', [PerwalianController::class, 'createDKBSAdmin'])->name('createDKBSAdmin');
+    Route::post('/perwalian/dkbsList/{perwalian}/mahasiswa/{nrp}/create', [PerwalianController::class, 'storeDKBSAdmin'])->name('storeDKBSAdmin');
+    Route::get('/perwalian/dkbsList/{perwalian}/mahasiswa/{nrp}/create/{kode_matkul}', [PerwalianController::class, 'deleteDKBSAdmin'])->name('deleteDKBSAdmin');
 
 
     Route::get('/MataKuliahMahasiswa', [MataKuliahController::class, 'index'])->name('mataKuliahMahasiswaList');
@@ -106,11 +110,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
     Route::post('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
     Route::post('/PerwalianMahasiswa/ConfirmDKBS', [MataKuliahDetailController::class, 'create'])->name('tampilMatkulTerpilih');
+
     
     Route::get('/dkbs', [DKBSController::class, 'index'])->name('dkbsList');
 
 
 
+
+    
 });
-
-

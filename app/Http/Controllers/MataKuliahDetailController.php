@@ -19,10 +19,18 @@ class MataKuliahDetailController extends Controller
     public function index()
     {   
         if(Auth::user()->role =='Admin'){
-            $data = MataKuliahDetail::all();
-            return view('matakuliahdetail.index',[
+            $data = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe','matkul_detail.kelas','matkul_detail.kuota','matkul_detail.hari','matkul_detail.jam_awal','matkul_detail.jam_akhir','perwalian.semester','matkul_detail.kode_ruang')
+            ->join('mata_kuliah','matkul_detail.kode_matkul','=','mata_kuliah.kode_matkul')
+            ->join('perwalian','matkul_detail.perwalian_id','=','perwalian.id')
+            ->join('program_studi','program_studi.kode_prodi','=','mata_kuliah.kode_prodi')
+            ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->where('users.id',Auth::user()->id)
+            ->get();
+            return view('mataKuliahDetail.index',[
                 'matakuliahdetails' => $data
             ]);
+            
         }elseif(Auth::user()->role =='Mahasiswa'){
             $matkulSenin = DB::table('matkul_detail')
             ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
@@ -42,7 +50,7 @@ class MataKuliahDetailController extends Controller
             ->where('matkul_detail.hari','Rabu')
             ->orderBy('mata_kuliah.semester', 'ASC')
             ->get();
-            $matkulKamis = DB::table('matkul_detail')
+            $matkulKamis = DB::table('matkul_detail') 
             ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','matkul_detail.kode_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
             ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
             ->where('matkul_detail.hari','Kamis')
