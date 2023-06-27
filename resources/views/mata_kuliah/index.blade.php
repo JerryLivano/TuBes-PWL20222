@@ -48,7 +48,7 @@
                             <td>{{$matakuliah->beban_sks}}</td>
                             <td>{{$matakuliah->deskripsi}}</td>
                             <td>
-                                <a href="{{route('mataKuliahDetailList')}}" class="btn btn-success" role="button">Detail</a>
+                                <a href="{{route('munculDetailMataKuliahList', ['kode_matkul'=>$matakuliah -> kode_matkul])}}" class="btn btn-success" role="button">Detail</a>
                             </td>
                             <td>
                                 <a href="{{route('editMataKuliah', ['kode_matkul' => $matakuliah->kode_matkul]) }}" class="btn btn-warning" role="button" style="cursor: pointer;"><i class="nav-icon fa fa-edit"></i></a>

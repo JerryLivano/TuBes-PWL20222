@@ -28,17 +28,17 @@
 
             </div>
             <div class="card-body p-0">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 text-center">
                     <thead>
                     <tr>
                         <th>Tipe</th>
+                        <th>Kelas</th>
                         <th>Kuota</th>
-                        <th>Beban SKS</th>
                         <th>Hari</th>
-                        <th>Jam Awal</th>
-                        <th>Jam Akhir</th>
+                        <th>Waktu</th>
                         <th>Perwalian</th>
                         <th>Kelas</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,12 +48,11 @@
                             <td>{{$matakuliahdetail -> kelas}}</td>
                             <td>{{$matakuliahdetail -> kuota}}</td>
                             <td>{{$matakuliahdetail -> hari}}</td>
-                            <td>{{$matakuliahdetail -> jam_awal}}</td>
-                            <td>{{$matakuliahdetail -> jam_akhir}}</td>
+                            <td>{{$matakuliahdetail -> jam_awal}} - {{$matakuliahdetail -> jam_akhir}}</td>
                             <td>{{$matakuliahdetail -> semester}}</td>
                             <td>{{$matakuliahdetail -> kode_ruang}}</td>
                             <td>
-                                <a href="#" class="btn btn-warning" role="button">Edit</a>
+                                <a href="{{route('editMataKuliahDetail', ['kode_matkul' => $matkul_detail->kode_matkul]) }}" class="btn btn-warning" role="button">Edit</a>
                                 <a href="#" class="btn btn-danger" role="button">Delete</a>
                             </td>
                         </tr>

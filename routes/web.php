@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/matakuliahdetail/delete/{mataKuliahDetail}', [MataKuliahDetailController::class, 'destroy'])->name('deleteMataKuliahDetailList');
     Route::post('/matakuliahdetail/edit/{mataKuliahDetail}', [MataKuliahDetailController::class, 'update'])->name('UpdateMataKuliahDetailList');
     Route::get('/matakuliahdetail/edit/{mataKuliahDetail}', [MataKuliahDetailController::class, 'edit'])->name('EditMataKuliahDetailList');
+    Route::get('/matakuliahdetail/details/{mataKuliahDetail}',[MataKuliahDetailController::class,'index'])->name('munculDetailMataKuliahList');
 
     Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswaList');
     Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('createMahasiswa');
