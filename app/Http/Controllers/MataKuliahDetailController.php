@@ -24,6 +24,7 @@ class MataKuliahDetailController extends Controller
             ->join('perwalian','matkul_detail.perwalian_id','=','perwalian.id')
             ->join('program_studi','program_studi.kode_prodi','=','mata_kuliah.kode_prodi')
             ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
+            # ->where('matkul_detail.kode_matkul','mata_kuliah.kode_matkul')
             ->where('users.id',Auth::user()->id)
             ->get();
             return view('mataKuliahDetail.index',[
