@@ -76,30 +76,38 @@ class MataKuliahDetailController extends Controller
      */
     public function create(Request $request)
     {
-        $inputValues = $request->input('txtKode', []);
-        
-        foreach ($inputValues as $inputName => $inputValue) {
-            $model = new DKBS();
-            $model ->kode_matkul = $inputValue;
-            $model ->nrp = Auth::user()->id;
-            $model ->perwalian_id = 2;
-            $model ->kelas = "A";
-            $model ->hari = $inputValue;
-            $model ->jam_awal = "09:00";
-            $model ->jam_akhir = "12:00";
-            $model ->ruangan="INT-2";
-            $model->save();
+        $checkboxValue = $request->input('checkbox');
+        $dataValueTwo = $request->input('data-valuetwo');
+
+        $inputTexts = $request->input('txtKode', []);
+        $arry = [];
+        $x=0;
+        foreach($inputTexts as $value){
+            $arry[$x]=$value;
+            $x++;
 
         }
+        
+        $matkul = DB::table('matkul_detail')
+            ->select('matkul_detail.tipe', 'matkul_detail.kelas', 'matkul_detail.kuota', 'mata_kuliah.beban_sks', 'matkul_detail.hari', 'matkul_detail.jam_awal','ruangan.nama_ruang','matkul_detail.jam_akhir','mata_kuliah.nama_matkul','mata_kuliah.kode_matkul','mata_kuliah.semester',)
+            ->join('mata_kuliah', 'mata_kuliah.kode_matkul', '=', 'matkul_detail.kode_matkul')
+            ->join('ruangan', 'ruangan.kode_ruang', '=', 'matkul_detail.kode_ruang')
+            ->join('perwalian', 'perwalian.id', '=', 'matkul_detail.perwalian_id')
+            ->where('matkul_detail.kelas',$arry[0])
+            ->where('matkul_detail.tipe',$arry[1])
+            ->where('perwalian.status',1)
+            ->get();
+
+        
        
         if(Auth::user()->role =='Admin'){
             return view('matakuliahdetail/create');
         }
-        // elseif(Auth::user()->role =='Mahasiswa'){
-        //     return view('PerwalianMahasiswa/confirm',[
-        //         'perwalian' => $request->all()
-        //     ]);
-        // }
+        elseif(Auth::user()->role =='Mahasiswa'){
+            return view('PerwalianMahasiswa/confirm',[
+                'perwalian' => $matkul
+            ]);
+        }
     }
 
     /**

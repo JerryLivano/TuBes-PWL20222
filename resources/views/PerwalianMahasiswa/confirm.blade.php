@@ -1,7 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-
+<style>
+    input{
+        outline: none;
+        border: none;
+        text-align: center;
+        background: transparent;
+    }
+</style>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -23,7 +30,6 @@
         <div class="card text-center bg-dark">
            
             <div class="card-body p-0 bg-light">
-            <form>
                 <table class="table table-hover mb-0">
                     <thead>
                     <tr>
@@ -34,30 +40,60 @@
                         <th>Kuota</th>
                         <th>Beban SKS</th>
                         <th>Hari</th>
-                        <th>Jam</th>
+                        <th>Jam Awal</th>
+                        <th>Jam Akhir</th>
                         <th>Ruangan</th>
-                        <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
+                        <form action="{{ route('ConfirmDKBS') }}" method="POST">
+                            @csrf
                         @foreach ($perwalian as $perwalians)
                         
                             <tr>
-                                <td>{{$matkul}}</td>
-                                {{-- <td>{{$matkul -> kode_matkul}}</td>
-                                <td>{{$perwalian}}</td> 
-                                <td>{{$matkul -> kode_matkul}}</td>
-                                <td>{{$matkul -> kode_matkul}}</td>
-                                <td>{{$matkul -> kode_matkul}}</td>
-                                <td>{{$matkul -> kode_matkul}}</td>
-                                <td>{{$matkul -> kode_matkul}}</td> --}}
+                                <td>
+                                    <input name="txtKode" value="{{$perwalians -> kode_matkul}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtName" value=" {{$perwalians -> nama_matkul}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtKelas" value=" {{$perwalians -> kelas}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtTipe" value=" {{$perwalians->tipe}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtSks" value=" {{$perwalians->beban_sks}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtKuota" value=" {{$perwalians->kuota}}" readonly >
+                                </td>
+                                <td>
+                                    <input name="txtHari" value=" {{$perwalians -> hari}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtAwal" value=" {{$perwalians -> jam_awal}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtAkhir" value=" {{$perwalians -> jam_akhir}}" readonly>
+                                </td>
+                                <td>
+                                    <input name="txtRuang" value=" {{$perwalians -> nama_ruang}}" readonly>
+                                </td>
+                                {{-- <td>{{$perwalians -> semester}} --}}
+                                {{-- <td>{{$perwalians -> kode_ruangan}} --}}
+                                    
                             </tr>
 
                         @endforeach
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                        </form>
                     </tbody>
                 </table>
                 
-            </form>
                             
             </div>
 
