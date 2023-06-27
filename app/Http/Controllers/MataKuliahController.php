@@ -19,11 +19,13 @@ class MataKuliahController extends Controller
     public function index()
     {
             $data = DB::table('mata_kuliah')
-            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'mata_kuliah.semester', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi')
+            ->select('mata_kuliah.kode_matkul', 'mata_kuliah.nama_matkul', 'perwalian.id', 'mata_kuliah.beban_sks', 'mata_kuliah.deskripsi')
             ->join('program_studi', 'mata_kuliah.kode_prodi', '=', 'program_studi.kode_prodi')
+            ->join('matkul_detail','mata_kuliah.kode_matkul','=','matkul_detail.kode_matkul')
+            ->join('perwalian','matkul_detail.perwalian_id','=','perwalian.id')
             ->join('users', 'users.kode_prodi', '=', 'program_studi.kode_prodi')
             ->where('users.id', Auth::user()->id)
-            ->orderBy('mata_kuliah.semester', 'ASC')
+            ->orderBy('mata_kuliah.kode_matkul', 'ASC')
             ->get();
 
         if(Auth::user()->role =='Admin'){

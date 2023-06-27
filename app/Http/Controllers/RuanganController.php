@@ -56,14 +56,14 @@ class RuanganController extends Controller
         ])->validate();
 
         $fk = DB::table('program_studi')
-        ->select('program_studi.kode_fakultas')
+        ->select('kode_fakultas')
         ->where('program_studi.kode_prodi', Auth::user()->kode_prodi)
         ->get();
 
         $ruangan = new Ruangan();
         $ruangan->kode_ruang = $validatedData['txtId'];
         $ruangan->nama_ruang = $validatedData['txtName'];
-        $ruangan->kode_fakultas = $fk["kode_fakultas"];
+        $ruangan->kode_fakultas = $fk[0]->kode_fakultas;
         $ruangan->save();
         return redirect(route('ruanganList'));
     }
