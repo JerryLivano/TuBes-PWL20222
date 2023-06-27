@@ -35,7 +35,7 @@ class MataKuliahController extends Controller
             return view('MataKuliahMahasiswa.index',[
                 'MataKuliahMahasiswa' => $data
             ]);
-        }
+        } 
     }
 
     /**

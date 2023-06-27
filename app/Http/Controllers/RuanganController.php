@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Ruangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RuanganController extends Controller
 {
@@ -14,10 +16,20 @@ class RuanganController extends Controller
      */
     public function index()
     {
-        $data = Ruangan::all();
+        $data = DB::table('ruangan')
+        ->select('ruangan.kode_ruang','ruangan.nama_ruang')
+        ->join('fakultas', 'ruangan.kode_fakultas','=','fakultas.kode_fakultas')
+        ->join('program_studi','fakultas.kode_fakultas','=','program_studi.kode_fakultas')
+        ->join('users','users.kode_prodi','=','program_studi.kode_prodi')
+        ->where('users.id',Auth::user()->id)
+        ->get();
         return view('ruangan.index',[
             'ruangans' => $data
-        ]); 
+        ]);
+        // $data = Ruangan::all();
+        // return view('ruangan.index',[
+        //     'ruangans' => $data
+        // ]); 
     }
 
     /**
@@ -42,9 +54,16 @@ class RuanganController extends Controller
             'txtId' => 'required|string|max:100',
             'txtName' => 'required|string|max:100'
         ])->validate();
+
+        $fk = DB::table('program_studi')
+        ->select('program_studi.kode_fakultas')
+        ->where('program_studi.kode_prodi', Auth::user()->kode_prodi)
+        ->get();
+
         $ruangan = new Ruangan();
         $ruangan->kode_ruang = $validatedData['txtId'];
         $ruangan->nama_ruang = $validatedData['txtName'];
+        $ruangan->kode_fakultas = $fk["kode_fakultas"];
         $ruangan->save();
         return redirect(route('ruanganList'));
     }
@@ -86,7 +105,7 @@ class RuanganController extends Controller
         ])->validate();
 
         $ruangan->nama_ruang = $validatedData['txtName'];
-        $ruangan->save();
+        $ruangan->save(); 
         return redirect(route('ruanganList'));
     }
 
