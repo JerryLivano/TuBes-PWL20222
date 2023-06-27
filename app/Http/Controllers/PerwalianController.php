@@ -150,4 +150,48 @@ class PerwalianController extends Controller
             'perwalian' => $data
         ]);
     }
+
+    public function createDKBSAdmin($perwalian, $nrp)
+    {
+        $data = DB::table('mata_kuliah')
+            ->select('kode_matkul', 'nama_matkul')
+            ->where('kode_prodi', Auth::user()->kode_prodi)
+            ->get();
+        return view('perwalian/createDKBSAdmin', ["perwalians" => $data])
+            ->with('perwalian', $perwalian)
+            ->with('nrp', $nrp);
+    }
+
+    public function storeDKBSAdmin(Request $request, $perwalian, $nrp)
+    {
+        $validatedData = validator($request->all(), [
+            'txtKodeMatkul' => 'required|string|max:100',
+            'txtKelas' => 'required|string|max:100',
+            'txtHari' => 'required|string|max:100',
+            'txtJaw' => 'required|date_format:H:i:s',
+            'txtJak' => 'required|date_format:H:i:s',
+            "txtRuangan" => 'required|string|max:100'
+        ])->validate();
+        $dkbs = new DKBS();
+        $dkbs->kode_matkul = $validatedData['txtKodeMatkul'];
+        $dkbs->nrp = $nrp;
+        $dkbs->perwalian_id = $perwalian;
+        $dkbs->kelas = $validatedData['txtKelas'];
+        $dkbs->hari = $validatedData['txtHari'];
+        $dkbs->jam_awal = $validatedData['txtJaw'];
+        $dkbs->jam_akhir = $validatedData['txtJak'];
+        $dkbs->ruangan = $validatedData['txtRuangan'];
+        $dkbs->save();
+        return redirect(route('dkbsAdminMahasiswaList', ['perwalian' => $perwalian, 'nrp' => $nrp]));
+    }
+
+    public function deleteDKBSAdmin($perwalian, $nrp, $kode_matkul)
+    {
+        $dkbs = DB::table('DKBS')
+            ->where('perwalian_id', $perwalian)
+            ->where('nrp', $nrp)
+            ->where('kode_matkul', $kode_matkul)
+            ->delete();
+        return redirect(route('dkbsAdminMahasiswaList', ['perwalian' => $perwalian, 'nrp' => $nrp]));
+    }
 }

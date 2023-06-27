@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -15,9 +19,9 @@
 </div>
 <div class="content">
     <div class="container-fluid">
-        @foreach (array("Senin", "Selasa", "Rabu", "Kamis", "Jumat") as $hari)
+    
         <div class="card text-center bg-dark">
-            <div class=""><h1>{{ $hari }}</h1></div>
+           
             <div class="card-body p-0 bg-light">
             <form>
                 <table class="table table-hover mb-0">
@@ -37,20 +41,28 @@
                     </thead>
                     <tbody>
                         @foreach ($perwalian as $perwalians)
-                        <tr>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                            <td>{{$perwalians -> kode_matkul}}</td>
-                        </tr>
+                        
+                            <tr>
+                                <td>{{$matkul}}</td>
+                                {{-- <td>{{$matkul -> kode_matkul}}</td>
+                                <td>{{$perwalian}}</td> 
+                                <td>{{$matkul -> kode_matkul}}</td>
+                                <td>{{$matkul -> kode_matkul}}</td>
+                                <td>{{$matkul -> kode_matkul}}</td>
+                                <td>{{$matkul -> kode_matkul}}</td>
+                                <td>{{$matkul -> kode_matkul}}</td> --}}
+                            </tr>
+
+                        @endforeach
                     </tbody>
                 </table>
-                <button type="submit">
+                
             </form>
                             
-                                
+            </div>
+
+        </div>
+    </div>
+</div>                          
 <!-- /.content-header -->
+@endsection
