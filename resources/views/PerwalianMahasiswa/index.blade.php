@@ -50,7 +50,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <form action="/proses" method="POST">
+                        <form method="POST" id="myForm">
                             @csrf
                     @if($hari == 'Senin')
                         @foreach($matakuliahdetails[0] as $matkulSenin)
@@ -71,7 +71,7 @@
                                     <input  class="text" type="text" value="{{$matkulSenin -> kuota}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" name="myTextbox[]" value="{{$matkulSenin -> beban_sks}}" readonly>
+                                    <input  class="text" type="text" value="{{$matkulSenin -> beban_sks}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> hari}}" readonly>
@@ -83,7 +83,7 @@
                                     <input  class="text" type="text" value=" {{$matkulSenin -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()" name="values[]" data-value="{{$matkulSenin->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -106,7 +106,7 @@
                                     <input class="text" type="text" value="{{$matkulSelasa -> kuota}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" name="myTextbox[]" value="{{$matkulSelasa -> beban_sks}}" readonly>
+                                    <input class="text" type="text" value="{{$matkulSelasa -> beban_sks}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulSelasa -> hari}}" readonly>
@@ -118,7 +118,7 @@
                                     <input class="text" type="text" value=" {{$matkulSelasa -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()" name="values[]" data-value="{{$matkulSelasa->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -141,7 +141,7 @@
                                     <input class="text" type="text" value="{{$matkulRabu -> kuota}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" name="myTextbox[]" value="{{$matkulRabu -> beban_sks}}" readonly>
+                                    <input class="text" type="text"  value="{{$matkulRabu -> beban_sks}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulRabu -> hari}}" readonly>
@@ -153,7 +153,7 @@
                                     <input class="text" type="text" value=" {{$matkulRabu -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()" name="values[]" data-value="{{$matkulRabu->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -176,7 +176,7 @@
                                     <input class="text" type="text" value="{{$matkulKamis -> kuota}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" name="myTextbox[]" value="{{$matkulKamis -> beban_sks}}" readonly>
+                                    <input class="text" type="text" value="{{$matkulKamis -> beban_sks}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulKamis -> hari}}" readonly>
@@ -188,7 +188,7 @@
                                     <input class="text" type="text" value=" {{$matkulKamis -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()" name="values[{{$matkulKamis->beban_sks}}]" data-value="{{$matkulKamis->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -211,7 +211,7 @@
                                     <input class="text" type="text" value="{{$matkulJumat -> kuota}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" name="myTextbox[]" value="{{$matkulJumat -> beban_sks}}" readonly>
+                                    <input class="text" type="text" value="{{$matkulJumat -> beban_sks}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulJumat -> hari}}" readonly>
@@ -223,7 +223,7 @@
                                     <input class="text" type="text" value=" {{$matkulJumat -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()" name="values[{{$matkulJumat->beban_sks}}]" data-value="{{$matkulJumat->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -234,11 +234,61 @@
         </div>
         @endforeach
         <div class="text-right">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" onclick="validateAndSubmit()" class="btn btn-primary">Save</button>
         </div>
     </form>
         {{-- main content here --}}
     </div><!-- /.container-fluid -->
 </div>
+<script>
+    let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    function checkSks(){
+        let totalSks = 0;
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                totalSks += parseInt(checkbox.dataset.value);
+                console.log(totalSks)
+                
+            }
+            let jumlah = totalSks + parseInt(checkbox.dataset.value);
+            console.log("asd"+jumlah)
+            if(jumlah>6){
+                checkbox.disabled=true
+            }
+            if(checkbox.checked){
+                checkbox.disabled=false
+            }
+        });
+        
+        
+        
+            
+    }
+    function validateAndSubmit() {
+        
+
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                totalSks += parseInt(checkbox.dataset.value);
+            }
+        });
+
+        if (totalSks > 3) {
+            alert("Total SKS melebihi 24. Silakan pilih kembali.");
+            checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked==false) {
+               checkbox.disabled=true
+            }
+        });
+            // return redirect()->route('perwalianMahasiswa')->with('error', 'Total SKS melebihi batas maksimal (24)');
+        } else {
+            checkbox.disabled=false
+            // document.getElementById("myForm").submit();
+        }
+    }
+
+
+
+</script>
 <!-- /.content -->
 @endsection

@@ -78,7 +78,7 @@ class MataKuliahDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
