@@ -96,12 +96,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('dashboard')}}" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{route('mataKuliahMahasiswaList')}}" class="nav-link">
                         <i class="nav-icon fa fa-book"></i>
                         <p>Mata Kuliah</p>

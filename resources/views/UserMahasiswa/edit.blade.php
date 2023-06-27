@@ -25,7 +25,7 @@
 
         <div class="card">
             <div class="card-body p-2">
-                <form action="{{ route('updateProfile', ['id'=>$UserMahasiswa -> id]) }}" method="post">
+                <form action="{{ route('updateProfile', ['id'=>$UserMahasiswa -> id]) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="txtId">NRP</label>
@@ -54,9 +54,9 @@
                     <div class="form-group">
                         <label for="profile">Profile Sekarang</label><br>
                         @if(Auth::user()->profile == NULL)
-                        <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="300">
+                        <img src="{{asset('img/user-photo-default.png')}}" class="rounded mx-auto" alt="User Image" width="300">
                         @else
-                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle" alt="User Image" width="300">
+                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="rounded mx-auto" alt="User Image" width="300">
                         @endif
                         <div class="mt-4">
                             <input id="profile" type="file" class="file @error('profile') is-invalid @enderror" placeholder="Foto Profil" name="profile"  value="{{ old('profile') }}" accept="image/*" autofocus>

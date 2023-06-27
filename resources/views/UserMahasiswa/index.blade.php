@@ -28,9 +28,9 @@
                     <div class="col-sm-5">
                         <h2>Foto Profil</h2>
                         @if(Auth::user()->profile == NULL)
-                        <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="450">
+                        <img src="{{asset('img/user-photo-default.png')}}" class="img-circle" alt="User Image" width="450" height="450">
                         @else
-                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle" alt="User Image">
+                        <img src="{{asset('img/'. Auth::user()->profile)}}" class="img-circle" alt="User Image" width="450" height="450">
                         @endif
                     </div>
                     @csrf

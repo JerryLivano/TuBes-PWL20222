@@ -233,9 +233,16 @@
             </div>
         </div>
         @endforeach
-        <div class="text-right">
-            <button type="submit" onclick="submitForm()" class="btn btn-primary">Save</button>
-        </div>
+            <form action="">
+                <div class="mb-1">Pilih Pembayaran: </div>
+                <input type="radio" class="" name="sekali" id="sekali">
+                <label for="sekali" class="form-check-label">1x Bayar</label>
+                <input type="radio" class="" name="tiga" id="tiga" style="margin-left: 30px;">
+                <label for="sekali" class="form-check-label">Cicilan 3x Bayar</label>
+            </form>
+            <div class="text-right">
+                <button type="submit" onclick="validateAndSubmit()" class="btn btn-primary mb-3">Submit</button>
+            </div>
     </form>
         {{-- main content here --}}
     </div><!-- /.container-fluid -->
