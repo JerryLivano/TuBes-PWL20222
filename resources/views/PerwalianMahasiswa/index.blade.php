@@ -50,19 +50,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <form method="POST" id="myForm">
+                        <form onsubmit=" " method="POST" id="myForm" action="{{ route('tampilMatkulTerpilih') }}">
                             @csrf
                     @if($hari == 'Senin')
                         @foreach($matakuliahdetails[0] as $matkulSenin)
                             <tr>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSenin -> kode_matkul}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulSenin -> kode_matkul}}]" type="text" value="{{$matkulSenin -> kode_matkul}} " readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> nama_matkul}}" readonly>
+                                    <input  class="text"  type="text" value="{{$matkulSenin -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> kelas}}" readonly>
+                                    <input  class="text" type="text" value="{{$matkulSenin -> kelas}} " readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> tipe}}" readonly>
@@ -74,7 +74,7 @@
                                     <input  class="text" type="text" value="{{$matkulSenin -> beban_sks}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> hari}}" readonly>
+                                    <input  class="text" name="txtKode[{{$matkulSenin -> hari}}]" type="text" value="{{$matkulSenin -> hari}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> jam_awal}} - {{$matkulSenin -> jam_akhir}}" readonly>
@@ -83,7 +83,7 @@
                                     <input  class="text" type="text" value=" {{$matkulSenin -> kode_ruang}}" readonly>
                                 </td>
                                 <td>
-                                    <input type="checkbox" onchange="checkSks()" name="values[]" data-value="{{$matkulSenin->beban_sks}}" class="form-check-input">
+                                    <input type="checkbox" onchange="checkSks()"  name="values[]" data-value="{{$matkulSenin->beban_sks}}" class="form-check-input">
                                 </td>
                         </tr>
                         @endforeach
@@ -234,7 +234,7 @@
         </div>
         @endforeach
         <div class="text-right">
-            <button type="submit" onclick="validateAndSubmit()" class="btn btn-primary">Save</button>
+            <button type="submit" onclick="submitForm()" class="btn btn-primary">Save</button>
         </div>
     </form>
         {{-- main content here --}}
@@ -247,48 +247,23 @@
         checkboxes.forEach(function (checkbox) {
             if (checkbox.checked) {
                 totalSks += parseInt(checkbox.dataset.value);
-                console.log(totalSks)
-                
             }
+        })
+        checkboxes.forEach(function (checkbox) {
             let jumlah = totalSks + parseInt(checkbox.dataset.value);
-            console.log("asd"+jumlah)
-            if(jumlah>6){
+            if(jumlah>6 && checkbox.checked == false){
                 checkbox.disabled=true
-            }
-            if(checkbox.checked){
+            } else {
                 checkbox.disabled=false
             }
-        });
-        
-        
-        
-            
+        })
+        console.log(totalSks)
+        };
+
+
+    function submitForm() {
+        document.getElementById('myForm').submit(); // Submit the form
     }
-    function validateAndSubmit() {
-        
-
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                totalSks += parseInt(checkbox.dataset.value);
-            }
-        });
-
-        if (totalSks > 3) {
-            alert("Total SKS melebihi 24. Silakan pilih kembali.");
-            checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked==false) {
-               checkbox.disabled=true
-            }
-        });
-            // return redirect()->route('perwalianMahasiswa')->with('error', 'Total SKS melebihi batas maksimal (24)');
-        } else {
-            checkbox.disabled=false
-            // document.getElementById("myForm").submit();
-        }
-    }
-
-
-
 </script>
 <!-- /.content -->
 @endsection
