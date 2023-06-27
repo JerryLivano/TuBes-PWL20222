@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DKBS;
 use App\MataKuliah;
 use App\MataKuliahDetail;
 use Illuminate\Http\Request;
@@ -65,9 +66,32 @@ class MataKuliahDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('matakuliahdetail/create');
+        $inputValues = $request->input('txtKode', []);
+        
+        foreach ($inputValues as $inputName => $inputValue) {
+            $model = new DKBS();
+            $model ->kode_matkul = $inputValue;
+            $model ->nrp = Auth::user()->id;
+            $model ->perwalian_id = 2;
+            $model ->kelas = "A";
+            $model ->hari = $inputValue;
+            $model ->jam_awal = "09:00";
+            $model ->jam_akhir = "12:00";
+            $model ->ruangan="INT-2";
+            $model->save();
+
+        }
+       
+        if(Auth::user()->role =='Admin'){
+            return view('matakuliahdetail/create');
+        }
+        // elseif(Auth::user()->role =='Mahasiswa'){
+        //     return view('PerwalianMahasiswa/confirm',[
+        //         'perwalian' => $request->all()
+        //     ]);
+        // }
     }
 
     /**
@@ -126,4 +150,14 @@ class MataKuliahDetailController extends Controller
         $mataKuliahDetail -> delete();
         return redirect(route('mataKuliahDetailList'));
     }
+
+    public function tampilMatkulTerpilih(Request $request)
+    {
+        $selectedValues = $request->input('selectedValues');
+
+        // Process the selected values as needed
+
+        return view('PerwalianMahasiswa/confirm', compact('selectedValues'));
+    }
+
 }
