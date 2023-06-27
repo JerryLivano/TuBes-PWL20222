@@ -110,7 +110,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
     Route::post('/PerwalianMahasiswa', [MataKuliahDetailController::class, 'index'])->name('perwalianMahasiswa');
     Route::post('/PerwalianMahasiswa/ConfirmDKBS', [MataKuliahDetailController::class, 'create'])->name('tampilMatkulTerpilih');
-
+    Route::post('/PerwalianMahasiswa/DKBS', [DKBSController::class, 'store'])->name('ConfirmDKBS');
     
     Route::get('/dkbs', [DKBSController::class, 'index'])->name('dkbsList');
 

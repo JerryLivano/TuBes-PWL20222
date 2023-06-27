@@ -56,16 +56,16 @@
                         @foreach($matakuliahdetails[0] as $matkulSenin)
                             <tr>
                                 <td>
-                                    <input class="text" name="txtKode[{{$matkulSenin -> kode_matkul}}]" type="text" value="{{$matkulSenin -> kode_matkul}} " readonly>
+                                    <input class="text"  type="text" value="{{$matkulSenin -> kode_matkul}} " readonly>
                                 </td>
                                 <td>
                                     <input  class="text"  type="text" value="{{$matkulSenin -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> kelas}} " readonly>
+                                    <input  class="text" name="txtKode[{{$matkulSenin -> kelas}}]" type="text" value="{{$matkulSenin -> kelas}} " readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" type="text" value="{{$matkulSenin -> tipe}}" readonly>
+                                    <input  class="text" type="text" name="txtKode[{{$matkulSenin -> tipe}}]" value="{{$matkulSenin -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> kuota}}" readonly>
@@ -74,7 +74,7 @@
                                     <input  class="text" type="text" value="{{$matkulSenin -> beban_sks}}" readonly>
                                 </td>
                                 <td>
-                                    <input  class="text" name="txtKode[{{$matkulSenin -> hari}}]" type="text" value="{{$matkulSenin -> hari}}" readonly>
+                                    <input  class="text"   type="text" value="{{$matkulSenin -> hari}}" readonly>
                                 </td>
                                 <td>
                                     <input  class="text" type="text" value="{{$matkulSenin -> jam_awal}} - {{$matkulSenin -> jam_akhir}}" readonly>
@@ -97,10 +97,10 @@
                                     <input class="text" type="text" value="{{$matkulSelasa -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSelasa -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulSelasa -> kelas}}]" type="text" value="{{$matkulSelasa -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulSelasa -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulSelasa -> tipe}}]" type="text" value="{{$matkulSelasa -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulSelasa -> kuota}}" readonly>
@@ -132,10 +132,10 @@
                                     <input class="text" type="text" value="{{$matkulRabu -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulRabu -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulRabu -> kelas}}]" type="text" value="{{$matkulRabu -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulRabu -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulRabu -> tipe}}]" type="text" value="{{$matkulRabu -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulRabu -> kuota}}" readonly>
@@ -167,10 +167,10 @@
                                     <input class="text" type="text" value="{{$matkulKamis -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulKamis -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulKamis -> kelas}}]" type="text" value="{{$matkulKamis -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulKamis -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulKamis -> tipe}}]" type="text" value="{{$matkulKamis -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulKamis -> kuota}}" readonly>
@@ -202,10 +202,10 @@
                                     <input class="text" type="text" value="{{$matkulJumat -> nama_matkul}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulJumat -> kelas}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulJumat -> kelas}}]" type="text" value="{{$matkulJumat -> kelas}}" readonly>
                                 </td>
                                 <td>
-                                    <input class="text" type="text" value="{{$matkulJumat -> tipe}}" readonly>
+                                    <input class="text" name="txtKode[{{$matkulJumat -> tipe}}]" type="text" value="{{$matkulJumat -> tipe}}" readonly>
                                 </td>
                                 <td>
                                     <input class="text" type="text" value="{{$matkulJumat -> kuota}}" readonly>

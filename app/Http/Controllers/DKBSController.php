@@ -46,7 +46,23 @@ class DKBSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = DB::table('Perwalian')
+        ->select('id')
+        ->where('status',1)
+        ->get();
+
+
+        $matkul = new DKBS();
+        $matkul -> kode_matkul = $request->input('txtKode');
+        $matkul -> kelas = $request->input('txtKelas');
+        $matkul -> hari = $request->input('txtHari');
+        $matkul -> jam_akhir = $request->input('txtAkhir');
+        $matkul -> jam_awal = $request->input('txtAwal');
+        $matkul -> ruangan = $request->input('txtRuang');
+        $matkul -> perwalian_id = ($data[0]->id);
+        $matkul -> nrp = Auth::user()->id;
+        $matkul -> save();
+        return redirect(route('dashboard'));
     }
 
     /**
